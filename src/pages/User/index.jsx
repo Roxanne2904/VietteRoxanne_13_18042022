@@ -1,4 +1,12 @@
+import { useSelector } from 'react-redux'
+import { selectToken } from '../../utils/selectors'
+import { selectInputValue } from '../../utils/selectors'
+
 export default function User() {
+    const token = useSelector(selectToken)
+    const value = useSelector(selectInputValue)
+    console.log(token)
+    console.log(value)
     return (
         <div>
             <main className="main bg-dark">
