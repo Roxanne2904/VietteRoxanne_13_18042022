@@ -1,11 +1,11 @@
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
 //*actions
-import { fetchOrUpdateToken } from './tokenReducer.jsx'
+import { fetchOrUpdateToken } from './actions'
 import { getEmail, getPassword } from './inputValueReducer.jsx'
+// import { actions } from './tokenReducer'
 
 //*select
 import { selectToken } from '../../utils/selectors.jsx'
@@ -16,15 +16,17 @@ import Input from '../Input/index.jsx'
 import { SignInButton } from './styled.jsx'
 
 export default function FormSignin() {
-    let navigate = useNavigate()
     // const store = useStore()
+    let navigate = useNavigate()
     const dispatch = useDispatch()
     const token = useSelector(selectToken)
     const inputValue = useSelector(selectInputValue)
+
     const { email, password } = inputValue
+    const { status, data } = token
 
     console.log(inputValue)
-    console.log(token)
+    // console.log(token)
 
     const handleSignin = (e) => {
         e.preventDefault()
@@ -32,10 +34,10 @@ export default function FormSignin() {
     }
 
     useEffect(() => {
-        if (token.status === 'resolved' && token.data != null) {
+        if (status === 'resolved' && data != null) {
             navigate('/user')
         }
-    }, [navigate, token])
+    }, [navigate, token, status, data])
 
     return (
         <form onSubmit={handleSignin} noValidate>
@@ -45,7 +47,7 @@ export default function FormSignin() {
                 id="username"
                 autoComplete="on"
                 event={(e) => dispatch(getEmail(e.target.value))}
-                value={!email ? '' : email}
+                value={email && !email ? '' : email}
             />
             <Input
                 label="Password"
@@ -64,7 +66,7 @@ export default function FormSignin() {
 
             <SignInButton>Sign In</SignInButton>
             <p>
-                {token.status === 'rejected'
+                {status === 'rejected'
                     ? '[!]Error - Your password or your email is not valid'
                     : ''}
             </p>

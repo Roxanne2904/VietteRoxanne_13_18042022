@@ -1,6 +1,6 @@
 // import produce from 'immer'
-import { selectToken } from '../../utils/selectors'
-import axios from 'axios'
+// import { selectToken } from '../../utils/selectors'
+// import axios from 'axios'
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
@@ -22,41 +22,47 @@ const initialState = {
 // const tokenResolved = (data) => ({ type: RESOLVED, payload: data })
 // const tokenRejected = (error) => ({ type: REJECTED, payload: error })
 
-export function fetchOrUpdateToken(email, password) {
-    return async (dispatch, getState) => {
-        //* On peut lire le state actuel avec le thunk
-        const status = selectToken(getState()).status
-        //*Si la requête est déjà en cours
-        if (status === 'pending' || status === 'updating') {
-            //*On stop la fonction pour éviter de récupérer plusieurs fois la même données
-            return
-        }
-        //*On peut modifier le state en envoyant des actions avec dispatch
-        //*Ici on indique que le requête est en cours
-        dispatch(actions.tokenFetching())
+// export function fetchOrUpdateToken(email, password) {
+//     return async (dispatch, getState) => {
+//         //* On peut lire le state actuel avec le thunk
+//         const status = selectToken(getState()).status
+//         //*Si la requête est déjà en cours
+//         if (status === 'pending' || status === 'updating') {
+//             //*On stop la fonction pour éviter de récupérer plusieurs fois la même données
+//             return
+//         }
+//         //*On peut modifier le state en envoyant des actions avec dispatch
+//         //*Ici on indique que le requête est en cours
+//         dispatch(actions.tokenFetching())
 
-        try {
-            const response = await axios({
-                method: 'post',
-                url: 'http://localhost:3001/api/v1/user/login',
-                data: {
-                    email: email,
-                    password: password,
-                },
-            })
-            const data = await response.data.body
-            dispatch(actions.tokenResolved(data))
-        } catch (error) {
-            const currentError = error.response.data
-            dispatch(actions.tokenRejected(currentError))
-        }
-    }
-}
+//         try {
+//             const response = await axios({
+//                 method: 'post',
+//                 url: 'http://localhost:3001/api/v1/user/login',
+//                 data: {
+//                     email: email,
+//                     password: password,
+//                 },
+//             })
+//             const data = await response.data.body
+//             dispatch(actions.tokenResolved(data))
+//         } catch (error) {
+//             const currentError = error.response.data
+//             dispatch(actions.tokenRejected(currentError))
+//         }
+//     }
+// }
 
-const { actions, reducer } = createSlice({
+const tokenReducer = createSlice({
     name: 'token',
     initialState,
     reducers: {
+        tokenDisconnected: (draft) => {
+            draft.status = 'void'
+            draft.data = null
+            draft.error = null
+            return
+        },
         tokenFetching: (draft) => {
             if (draft.status === 'void') {
                 draft.status = 'pending'
@@ -97,6 +103,8 @@ const { actions, reducer } = createSlice({
     },
 })
 
+const { actions, reducer } = tokenReducer
+export const actionsToken = actions
 export default reducer
 
 // export default function tokenReducer(state = initialState, action) {

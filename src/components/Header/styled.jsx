@@ -28,3 +28,8 @@ export const SrOnly = styled.h1`
 export const MainNavItem = styled(Link)`
     ${MAIN_NAV_ITEM}
 `
+
+export const MainNavItemLogOut = styled.span`
+    ${MAIN_NAV_ITEM}// background: transparent;
+    // border: none;
+`

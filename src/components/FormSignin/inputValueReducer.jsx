@@ -2,8 +2,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    email: null,
-    password: null,
+    email: 'blabla',
+    password: 'blabla',
 }
 
 // //*le nom des actions

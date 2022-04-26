@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home/index'
+import Error from './pages/Error/index'
 import SignIn from './pages/SignIn/index'
 import User from './pages/User/index'
 import FooterComponent from './components/Footer/index'
@@ -13,6 +14,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="sign-in" element={<SignIn />} />
                 <Route path="user" element={<User />} />
+                <Route path="*" element={<Error />} />
             </Routes>
             <FooterComponent />
         </BrowserRouter>
