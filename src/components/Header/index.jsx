@@ -8,11 +8,13 @@ import { actionsToken } from '../FormSignin/tokenReducer'
 import { actionsProfile } from '../../pages/User/profileReducer'
 import { actionsEditProfile } from '../FormEditName/editProfileReducer'
 import { actionsEditName } from '../Button/toggleEditNameReducer'
+import { actionsWidth } from './widthReducer'
 //*selectors
 import {
     selectToken,
     selectProfile,
     selectEditProfile,
+    selectWidth,
 } from '../../utils/selectors'
 
 // import { selectInputValue } from '../../utils/selectors'
@@ -25,6 +27,7 @@ import {
     MainNavItem,
     MainNavItemLogOut,
 } from './styled'
+import { useEffect } from 'react'
 
 export default function Header() {
     const navigate = useNavigate()
@@ -39,14 +42,18 @@ export default function Header() {
     const { data } = editProfile
     const editFirstName = data !== null && data.firstName
 
-    // console.log(!newFirstName)
-    // console.log(editProfile)
-    // console.log(token)
-    // console.log(profile)
-    // console.log(`profile data :`)
+    const width = useSelector(selectWidth)
+    const { currentWidth } = width
 
-    // console.log(`values data :`)
-    // console.log(inputValue)
+    useEffect(() => {
+        const updateDimensions = () => {
+            const currentWidth = window.innerWidth
+            dispatch(actionsWidth.updateWidth(currentWidth))
+        }
+        window.addEventListener('resize', updateDimensions)
+
+        return () => window.removeEventListener('resize', updateDimensions)
+    }, [dispatch, width])
 
     const handleLogOut = () => {
         dispatch(actionsToken.tokenDisconnected())
@@ -87,7 +94,9 @@ export default function Header() {
                                 }}
                             >
                                 <FontAwesomeIcon icon={faSignOut} />
-                                Sign Out
+                                {currentWidth !== null && currentWidth < 410
+                                    ? ''
+                                    : ' Sign Out'}
                             </MainNavItemLogOut>
                         </div>
                     )}

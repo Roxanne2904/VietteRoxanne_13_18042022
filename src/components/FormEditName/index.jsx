@@ -31,9 +31,11 @@ export default function FormEditName() {
 
     const profile = useSelector(selectProfile)
     const { data } = profile
+    // console.log(data)
     const { firstName, lastName } = data !== null && data
 
     const editProfile = useSelector(selectEditProfile)
+    const editDataProfile = editProfile.data !== null && editProfile.data
 
     const editValue = useSelector(selectEditValue)
     const { editFirstName, editLastName } = editValue
@@ -57,16 +59,17 @@ export default function FormEditName() {
     //     'le nouveau prénom stocké' + '     ' + editProfile.data.firstName
     // )
 
-    test(firstName, editFirstName, editProfile.data.firstName)
-    test(lastName, editLastName, editProfile.data.lastName)
+    // test(firstName, editFirstName, editProfile.data.firstName)
+    // test(lastName, editLastName, editProfile.data.lastName)
 
+    console.log(editProfile)
     const handleEditName = (e) => {
         e.preventDefault()
         dispatch(
             fetchOrUpdateEditProfile(
                 currentToken,
-                test(firstName, editFirstName, editProfile.data.firstName),
-                test(lastName, editLastName, editProfile.data.lastName)
+                test(firstName, editFirstName, editDataProfile.firstName),
+                test(lastName, editLastName, editDataProfile.lastName)
             )
         )
     }

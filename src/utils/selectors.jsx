@@ -26,3 +26,8 @@ export const selectEditName = (state) => {
     let editNameState = state.persistedReducer.editName
     return editNameState
 }
+
+export const selectWidth = (state) => {
+    let widthState = state.persistedReducer.width
+    return widthState
+}

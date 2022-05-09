@@ -26,6 +26,7 @@ export function fetchOrUpdateToken(email, password) {
         } catch (error) {
             if (error.response === undefined) {
                 dispatch(actionsToken.tokenDisconnected())
+                console.log(error)
                 window.location.pathname = '/error'
             } else {
                 const currentError = error.response.data

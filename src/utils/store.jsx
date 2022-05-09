@@ -8,6 +8,7 @@ import editValueReducer from '../components/FormEditName/editValueReducer'
 import profileReducer from '../pages/User/profileReducer'
 import editProfileReducer from '../components/FormEditName/editProfileReducer'
 import toggleEditNameReducer from '../components/Button/toggleEditNameReducer'
+import widthReducer from '../components/Header/widthReducer'
 //*redux-persist
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist'
@@ -25,6 +26,7 @@ const reducer = combineReducers({
     signinValue: signinValueReducer,
     editValue: editValueReducer,
     editName: toggleEditNameReducer,
+    width: widthReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)
