@@ -5,10 +5,17 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 //*actions
 import { actionsToken } from '../FormSignin/tokenReducer'
+import { actionsProfile } from '../../pages/User/profileReducer'
+import { actionsEditProfile } from '../FormEditName/editProfileReducer'
+import { actionsEditName } from '../Button/toggleEditNameReducer'
 //*selectors
-import { selectToken } from '../../utils/selectors'
-import { selectProfile } from '../../utils/selectors'
+import {
+    selectToken,
+    selectProfile,
+    selectEditProfile,
+} from '../../utils/selectors'
 
+// import { selectInputValue } from '../../utils/selectors'
 //*STYLED
 import {
     MainNav,
@@ -26,11 +33,26 @@ export default function Header() {
     const token = useSelector(selectToken)
 
     const profile = useSelector(selectProfile)
-    const { firstName } = profile.data
-    // console.log(firstName)
+    const { firstName } = profile.data !== null && profile.data
+
+    const editProfile = useSelector(selectEditProfile)
+    const { data } = editProfile
+    const editFirstName = data !== null && data.firstName
+
+    // console.log(!newFirstName)
+    // console.log(editProfile)
+    // console.log(token)
+    // console.log(profile)
+    // console.log(`profile data :`)
+
+    // console.log(`values data :`)
+    // console.log(inputValue)
 
     const handleLogOut = () => {
         dispatch(actionsToken.tokenDisconnected())
+        dispatch(actionsProfile.profileDisconnected())
+        dispatch(actionsEditProfile.editProfileDisconnected())
+        dispatch(actionsEditName.closeEditName())
         navigate('/')
     }
 
@@ -51,7 +73,11 @@ export default function Header() {
                         <div>
                             <MainNavItem to="/user">
                                 <FontAwesomeIcon icon={faUserCircle} />
-                                {`${firstName}`}
+                                {firstName === editFirstName
+                                    ? firstName
+                                    : !editFirstName
+                                    ? firstName
+                                    : editFirstName}
                             </MainNavItem>
                             <MainNavItemLogOut
                                 role={'button'}

@@ -1,13 +1,17 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-
 //*selectors
 import { selectToken } from '../../utils/selectors'
 // import { selectInputValue } from '../../utils/selectors'
-import { selectProfile } from '../../utils/selectors'
+import {
+    selectProfile,
+    selectEditProfile,
+    selectEditName,
+} from '../../utils/selectors'
 //*Components
 import Button from '../../components/Button/index'
 import CardTransaction from '../../components/CardTransactions'
+import FormEditName from '../../components/FormEditName'
 //*actions
 import { fetchOrUpdateProfile } from './actions'
 
@@ -26,13 +30,19 @@ export default function User() {
     const token = useSelector(selectToken)
     const currentToken = token.data.token
 
-    // const value = useSelector(selectInputValue)
     const profile = useSelector(selectProfile)
-    const { firstName, lastName } = profile.data
+    const { firstName, lastName } = profile.data !== null && profile.data
 
-    // console.log(currentToken)
-    // console.log(value)
-    // console.log(profile.data)
+    const editProfile = useSelector(selectEditProfile)
+    const { data } = editProfile
+
+    const editFirstName = data !== null && data.firstName
+    const editLastName = data !== null && data.lastName
+
+    const editNameState = useSelector(selectEditName)
+
+    // console.log(editProfile)
+    // console.log(!editFirstName)
 
     useEffect(() => {
         dispatch(fetchOrUpdateProfile(currentToken))
@@ -45,9 +55,24 @@ export default function User() {
                     <h1>
                         Welcome back
                         <br />
-                        {`${firstName} ${lastName}`}
+                        {firstName === editFirstName
+                            ? firstName
+                            : !editFirstName
+                            ? firstName
+                            : editFirstName}
+                        {lastName === editLastName
+                            ? ' ' + lastName
+                            : !editLastName
+                            ? ' ' + lastName
+                            : ' ' + editLastName}
                     </h1>
-                    <Button title="Edit Name" name="EDIT_NAME" />
+                    <Button
+                        title={
+                            editNameState === 'open' ? 'Cancel' : 'Edit Name'
+                        }
+                        name="EDIT_NAME"
+                    />
+                    <FormEditName />
                 </HeaderContent>
                 <SrOnly>Accounts</SrOnly>
                 <Account>

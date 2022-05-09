@@ -36,6 +36,7 @@ const profileReducer = createSlice({
                 if (draft.status === 'pending' || draft.status === 'updating') {
                     draft.data = action.payload
                     draft.status = 'resolved'
+                    draft.error = null
                     return
                 }
                 return

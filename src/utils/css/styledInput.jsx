@@ -10,6 +10,8 @@ export const INPUT_WRAPPER = `
         padding: 5px;
         font-size: 1.15rem;
     }
+   
+
 `
 export const INPUT_REMEMBER = `
     display: flex;

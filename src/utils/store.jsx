@@ -3,8 +3,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 //*reducers
 import tokenReducer from '../components/FormSignin/tokenReducer'
-import inputValueReducer from '../components/FormSignin/inputValueReducer'
+import signinValueReducer from '../components/FormSignin/signinValueReducer'
+import editValueReducer from '../components/FormEditName/editValueReducer'
 import profileReducer from '../pages/User/profileReducer'
+import editProfileReducer from '../components/FormEditName/editProfileReducer'
+import toggleEditNameReducer from '../components/Button/toggleEditNameReducer'
 //*redux-persist
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist'
@@ -17,8 +20,11 @@ const persistConfig = {
 }
 const reducer = combineReducers({
     token: tokenReducer,
-    inputValue: inputValueReducer,
     profile: profileReducer,
+    editProfile: editProfileReducer,
+    signinValue: signinValueReducer,
+    editValue: editValueReducer,
+    editName: toggleEditNameReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)
@@ -33,15 +39,3 @@ const store = configureStore({
 
 export default store
 //-------------------------
-
-// const reducer = combineReducers({
-//     token: tokenReducer,
-//     inputValue: inputValueReducer,
-// })
-
-// const reduxDevtools =
-//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-
-// const store = createStore(reducer, applyMiddleware(thunk))
-
-// export default store

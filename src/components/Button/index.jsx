@@ -1,4 +1,8 @@
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+//*actions
+import { actionsEditName } from './toggleEditNameReducer'
+import { resetToInitialState } from '../FormEditName/editValueReducer'
 
 const size = '720px'
 
@@ -25,11 +29,25 @@ const TransactionButton = styled.button`
 `
 
 export default function Button({ title, name }) {
+    const dispatch = useDispatch()
+
+    const toggleUpdateName = () => {
+        dispatch(actionsEditName.toggleEditName())
+        dispatch(resetToInitialState())
+    }
+
     switch (name) {
         case 'EDIT_NAME':
-            return <EditNameButton>{title}</EditNameButton>
+            return (
+                <EditNameButton onClick={() => toggleUpdateName()}>
+                    {title}
+                </EditNameButton>
+            )
         case 'VIEW_TRANSACTIONS':
             return <TransactionButton>{title}</TransactionButton>
+
+        case 'EDIT':
+            return <EditNameButton>{title}</EditNameButton>
         default:
             return
     }

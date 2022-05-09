@@ -1,17 +1,27 @@
 import { actionsProfile } from './profileReducer'
 import { actionsToken } from '../../components/FormSignin/tokenReducer'
-import axios from 'axios'
-// import { selectProfile } from '../../utils/selectors'
+import setAxiosInstance from '../../utils/axiosInstance'
+// import axios from 'axios'
+//*selectors
+import { selectProfile } from '../../utils/selectors'
+// import { selectToken } from '../../utils/selectors'
+// import { selectInputValue } from '../../utils/selectors'
+
+// import { fetchOrUpdateToken } from '../../components/FormSignin/actions'
 
 export function fetchOrUpdateProfile(token) {
-    return async (dispatch) => {
+    const axiosInstance = setAxiosInstance(token)
+    return async (dispatch, getState) => {
+        const status = selectProfile(getState()).status
+        if (status === 'pending' || status === 'updating') {
+            return
+        }
+
         dispatch(actionsProfile.profileFetching())
+
         try {
-            const response = await axios({
-                method: 'post',
-                url: 'http://localhost:3001/api/v1/user/profile',
-                headers: { Authorization: `Bearer ${token}` },
-            })
+            const response = await axiosInstance.post('/user/profile')
+
             const data = await response.data.body
             dispatch(actionsProfile.profileResolved(data))
         } catch (error) {

@@ -1,17 +1,7 @@
-import { InputWrapper } from './styled'
+import { InputWrapper, StyledLabel } from './styled'
 
 export default function Input({ label, type, id, autoComplete, event, value }) {
-    // console.log(event)
     if (!event) {
-        return (
-            <InputWrapper>
-                <label>
-                    {label}
-                    <input type={type} id={id} autoComplete={autoComplete} />
-                </label>
-            </InputWrapper>
-        )
-    } else {
         return (
             <InputWrapper>
                 <label>
@@ -20,11 +10,42 @@ export default function Input({ label, type, id, autoComplete, event, value }) {
                         type={type}
                         id={id}
                         autoComplete={autoComplete}
-                        onChange={event}
-                        value={value}
+                        defaultChecked
                     />
                 </label>
             </InputWrapper>
         )
+    } else {
+        if (id === 'firstName' || id === 'name') {
+            return (
+                <InputWrapper $editName>
+                    <StyledLabel>
+                        {label}
+                        <input
+                            type={type}
+                            id={id}
+                            autoComplete={autoComplete}
+                            onChange={event}
+                            value={value}
+                        />
+                    </StyledLabel>
+                </InputWrapper>
+            )
+        } else {
+            return (
+                <InputWrapper>
+                    <label>
+                        {label}
+                        <input
+                            type={type}
+                            id={id}
+                            autoComplete={autoComplete}
+                            onChange={event}
+                            value={value}
+                        />
+                    </label>
+                </InputWrapper>
+            )
+        }
     }
 }

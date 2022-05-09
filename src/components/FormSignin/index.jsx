@@ -4,12 +4,12 @@ import { useEffect } from 'react'
 
 //*actions
 import { fetchOrUpdateToken } from './actions'
-import { getEmail, getPassword } from './inputValueReducer.jsx'
+import { getEmail, getPassword } from './signinValueReducer.jsx'
 // import { actions } from './tokenReducer'
 
 //*select
 import { selectToken } from '../../utils/selectors.jsx'
-import { selectInputValue } from '../../utils/selectors.jsx'
+import { selectSigninValue } from '../../utils/selectors.jsx'
 import Input from '../Input/index.jsx'
 
 //*Styled
@@ -20,17 +20,17 @@ export default function FormSignin() {
     let navigate = useNavigate()
     const dispatch = useDispatch()
     const token = useSelector(selectToken)
-    const inputValue = useSelector(selectInputValue)
+    const signinValue = useSelector(selectSigninValue)
 
-    const { email, password } = inputValue
+    const { email, password } = signinValue
     const { status, data } = token
 
-    console.log(inputValue)
+    // console.log(signinValue)
     // console.log(token)
 
     const handleSignin = (e) => {
         e.preventDefault()
-        dispatch(fetchOrUpdateToken(inputValue.email, inputValue.password))
+        dispatch(fetchOrUpdateToken(signinValue.email, signinValue.password))
     }
 
     useEffect(() => {

@@ -21,6 +21,7 @@ export function fetchOrUpdateToken(email, password) {
                 },
             })
             const data = await response.data.body
+
             dispatch(actionsToken.tokenResolved(data))
         } catch (error) {
             if (error.response === undefined) {

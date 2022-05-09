@@ -1,6 +1,3 @@
-// import produce from 'immer'
-// import { selectToken } from '../../utils/selectors'
-// import axios from 'axios'
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
@@ -9,17 +6,17 @@ const initialState = {
     error: null, //* l'erreur lorsque la requête échoue
 }
 
-const tokenReducer = createSlice({
-    name: 'token',
+const editProfileReducer = createSlice({
+    name: 'editProfile',
     initialState,
     reducers: {
-        tokenDisconnected: (draft) => {
+        editProfileDisconnected: (draft) => {
             draft.status = 'void'
             draft.data = null
             draft.error = null
             return
         },
-        tokenFetching: (draft) => {
+        editProfileFetching: (draft) => {
             if (draft.status === 'void') {
                 draft.status = 'pending'
                 return
@@ -33,7 +30,7 @@ const tokenReducer = createSlice({
             }
             return
         },
-        tokenResolved: {
+        editProfileResolved: {
             prepare: (data) => ({ payload: data }),
             reducer: (draft, action) => {
                 if (draft.status === 'pending' || draft.status === 'updating') {
@@ -45,7 +42,7 @@ const tokenReducer = createSlice({
                 return
             },
         },
-        tokenRejected: {
+        editProfileRejected: {
             prepare: (error) => ({ payload: error }),
             reducer: (draft, action) => {
                 if (draft.status === 'pending' || draft.status === 'updating') {
@@ -60,6 +57,8 @@ const tokenReducer = createSlice({
     },
 })
 
-const { actions, reducer } = tokenReducer
-export const actionsToken = actions
+const { actions, reducer } = editProfileReducer
+
+export const actionsEditProfile = actions
+
 export default reducer
