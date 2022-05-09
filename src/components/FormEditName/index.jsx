@@ -46,7 +46,7 @@ export default function FormEditName() {
         if (editValue !== null && editValue !== '') {
             return editValue
         } else {
-            if (editData !== null) {
+            if (editData !== undefined) {
                 return editData
             }
             return data
@@ -56,13 +56,14 @@ export default function FormEditName() {
     // console.log('le prénom lors du login' + '     ' + firstName)
     // console.log('la value input' + '     ' + editFirstName)
     // console.log(
-    //     'le nouveau prénom stocké' + '     ' + editProfile.data.firstName
+    //     'le nouveau prénom stocké' + '     ' + editDataProfile.firstName
     // )
 
-    // test(firstName, editFirstName, editProfile.data.firstName)
-    // test(lastName, editLastName, editProfile.data.lastName)
+    // test(firstName, editFirstName, editDataProfile.firstName)
+    // test(lastName, editLastName, editDataProfile.lastName)
 
     console.log(editProfile)
+
     const handleEditName = (e) => {
         e.preventDefault()
         dispatch(
