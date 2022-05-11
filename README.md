@@ -1,7 +1,3 @@
-<!-- ![React](https://img.shields.io/badge/react-%2320232a.svg?logo=react&logoColor=%2361DAFB&style=flat)
-![Redux](https://img.shields.io/badge/redux-%23593d88.svg?logo=redux&logoColor=white&style=flat)
-<a href='https://react-redux.js.org/' target="_blank"><img alt='redux' src='https://img.shields.io/badge/React_Redux-100000?style=flat&logo=redux&logoColor=D681DA&labelColor=black&color=black'/></a> -->
-
 <a href='https://fr.reactjs.org/' target="_blank"><img alt='react' src='https://img.shields.io/badge/React-100000?style=flat&logo=react&logoColor=55D2D7&labelColor=black&color=black'/></a>
 <a href='https://redux.js.org/' target="_blank"><img alt='redux' src='https://img.shields.io/badge/redux-100000?style=flat&logo=redux&logoColor=C67EF0&labelColor=black&color=black'/></a>
 <a href='https://react-redux.js.org/' target="_blank"><img alt='redux' src='https://img.shields.io/badge/React_Redux-100000?style=flat&logo=redux&logoColor=D681DA&labelColor=black&color=black'/></a>
@@ -34,7 +30,7 @@ Follow the instructions below to start the Argent bank project.
 
 ### Prerequisites
 
-    If you are working with several versions of NodeJS, we recommend you install nvm. This tool will allow you to easily manage your NodeJS versions.
+If you are working with several versions of NodeJS, we recommend you install nvm. This tool will allow you to easily manage your NodeJS versions:
 
 -   [nvm](https://github.com/nvm-sh/nvm)
 
