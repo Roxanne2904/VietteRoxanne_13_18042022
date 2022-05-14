@@ -1,53 +1,72 @@
-import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
+// import styled from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux'
 //*actions
 import { actionsEditName } from './toggleEditNameReducer'
 import { resetToInitialState } from '../FormEditName/editValueReducer'
+//*selectors
+import { selectEditName } from '../../utils/selectors'
+//*actions
+import { toggleUpdateName } from './actions'
 
-const size = '720px'
-
-const EditNameButton = styled.button`
-    border-color: #00bc77;
-    background-color: #00bc77;
-    color: #fff;
-    font-weight: bold;
-    padding: 10px;
-`
-const TransactionButton = styled.button`
-    display: block;
-    width: 100%;
-    padding: 8px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-top: 1rem;
-    border-color: #00bc77;
-    background-color: #00bc77;
-    color: #fff;
-    @media (min-width: ${size}) {
-        width: 200px;
-    }
-`
+//*styled
+import {
+    SignInButton,
+    MainButtonStyle,
+    EditNameButton,
+    TransactionButton,
+} from './styled'
 
 export default function Button({ title, name }) {
     const dispatch = useDispatch()
 
-    const toggleUpdateName = () => {
-        dispatch(actionsEditName.toggleEditName())
-        dispatch(resetToInitialState())
-    }
+    const editNameState = useSelector(selectEditName)
+    // console.log(editNameState)
+
+    // const toggleUpdateName = () => {
+    //     dispatch(actionsEditName.toggleEditName())
+    //     dispatch(resetToInitialState())
+    // }
 
     switch (name) {
+        case 'LOGIN':
+            return <SignInButton>{title}</SignInButton>
         case 'EDIT_NAME':
             return (
-                <EditNameButton onClick={() => toggleUpdateName()}>
+                <EditNameButton
+                    close={editNameState}
+                    onClick={() =>
+                        dispatch(
+                            toggleUpdateName(
+                                actionsEditName.toggleEditName(),
+                                resetToInitialState()
+                            )
+                        )
+                    }
+                >
                     {title}
                 </EditNameButton>
             )
         case 'VIEW_TRANSACTIONS':
             return <TransactionButton>{title}</TransactionButton>
 
-        case 'EDIT':
-            return <EditNameButton>{title}</EditNameButton>
+        case 'SAVE':
+            return <MainButtonStyle type="submit">{title}</MainButtonStyle>
+        case 'CANCEL':
+            return (
+                <MainButtonStyle
+                    type="button"
+                    onClick={() =>
+                        dispatch(
+                            toggleUpdateName(
+                                actionsEditName.toggleEditName(),
+                                resetToInitialState()
+                            )
+                        )
+                    }
+                >
+                    {title}
+                </MainButtonStyle>
+            )
         default:
             return
     }

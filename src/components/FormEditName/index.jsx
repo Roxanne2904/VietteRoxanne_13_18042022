@@ -14,13 +14,26 @@ import {
 //*actions
 import { getEditFirstName, getEditLastName } from './editValueReducer'
 import { fetchOrUpdateEditProfile } from './actions'
+import { toggleUpdateName } from '../Button/actions'
+import { resetToInitialState } from './editValueReducer'
+import { actionsEditName } from '../Button/toggleEditNameReducer'
+//*service
+import { test } from './service'
 
 const StyledForm = styled.form`
     display: ${({ state }) => (state === 'open' ? 'block' : 'none')};
-    margin-top: 10px;
-    background: white;
     color: black;
-    padding: 20px;
+    padding: 0 20px;
+`
+
+const StyledButtonContent = styled.div`
+    display: flex;
+    justify-content: center;
+`
+const StyledInputContent = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 `
 
 export default function FormEditName() {
@@ -31,7 +44,7 @@ export default function FormEditName() {
 
     const profile = useSelector(selectProfile)
     const { data } = profile
-    // console.log(data)
+    console.log(data)
     const { firstName, lastName } = data !== null && data
 
     const editProfile = useSelector(selectEditProfile)
@@ -42,16 +55,16 @@ export default function FormEditName() {
 
     const editNameState = useSelector(selectEditName)
 
-    function test(data, editValue, editData) {
-        if (editValue !== null && editValue !== '') {
-            return editValue
-        } else {
-            if (editData !== undefined) {
-                return editData
-            }
-            return data
-        }
-    }
+    // function test(data, editValue, editData) {
+    //     if (editValue !== null && editValue !== '') {
+    //         return editValue
+    //     } else {
+    //         if (editData !== undefined) {
+    //             return editData
+    //         }
+    //         return data
+    //     }
+    // }
 
     // console.log('le prénom lors du login' + '     ' + firstName)
     // console.log('la value input' + '     ' + editFirstName)
@@ -62,7 +75,7 @@ export default function FormEditName() {
     // test(firstName, editFirstName, editDataProfile.firstName)
     // test(lastName, editLastName, editDataProfile.lastName)
 
-    console.log(editProfile)
+    // console.log(editDataProfile)
 
     const handleEditName = (e) => {
         e.preventDefault()
@@ -73,28 +86,50 @@ export default function FormEditName() {
                 test(lastName, editLastName, editDataProfile.lastName)
             )
         )
+        dispatch(
+            toggleUpdateName(
+                actionsEditName.toggleEditName(),
+                resetToInitialState()
+            )
+        )
     }
 
     return (
         <StyledForm onSubmit={handleEditName} noValidate state={editNameState}>
-            <Input
-                label="First Name"
-                type="text"
-                id="firstName"
-                autoComplete="on"
-                event={(e) => dispatch(getEditFirstName(e.target.value))}
-                value={editFirstName !== null ? editFirstName : ''}
-            />
+            <StyledInputContent>
+                <Input
+                    label="First Name"
+                    type="text"
+                    id="firstName"
+                    autoComplete="on"
+                    event={(e) => dispatch(getEditFirstName(e.target.value))}
+                    value={editFirstName !== null ? editFirstName : ''}
+                    placeholder={test(
+                        firstName,
+                        editFirstName,
+                        editDataProfile.firstName
+                    )}
+                />
 
-            <Input
-                label="Name"
-                type="text"
-                id="name"
-                autoComplete="on"
-                value={editLastName !== null ? editLastName : ''}
-                event={(e) => dispatch(getEditLastName(e.target.value))}
-            />
-            <Button title={'Save'} name="EDIT" />
+                <Input
+                    label="Name"
+                    type="text"
+                    id="name"
+                    autoComplete="on"
+                    event={(e) => dispatch(getEditLastName(e.target.value))}
+                    value={editLastName !== null ? editLastName : ''}
+                    placeholder={test(
+                        lastName,
+                        editLastName,
+                        editDataProfile.lastName
+                    )}
+                />
+            </StyledInputContent>
+
+            <StyledButtonContent>
+                <Button title={'Save'} name="SAVE" />
+                <Button title={'Cancel'} name="CANCEL" />
+            </StyledButtonContent>
         </StyledForm>
     )
 }

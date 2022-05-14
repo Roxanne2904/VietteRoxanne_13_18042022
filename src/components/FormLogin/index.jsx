@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-
+import styled from 'styled-components'
+//*components
+import Button from '../Button/index'
 //*actions
 import { fetchOrUpdateToken } from './actions'
 import { getEmail, getPassword } from './signinValueReducer.jsx'
@@ -13,34 +15,40 @@ import { selectSigninValue } from '../../utils/selectors.jsx'
 import Input from '../Input/index.jsx'
 
 //*Styled
-import { SignInButton } from './styled.jsx'
+// import { SignInButton } from './styled.jsx'
 
-export default function FormSignin() {
+const StyledErrorMessage = styled.p`
+    color: red;
+    text-align: center;
+    font-weight: bold;
+`
+
+export default function FormLogin() {
     // const store = useStore()
-    let navigate = useNavigate()
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const token = useSelector(selectToken)
     const signinValue = useSelector(selectSigninValue)
 
     const { email, password } = signinValue
-    const { status, data } = token
+    const { status, data, error } = token
 
     // console.log(signinValue)
-    // console.log(token)
+    console.log(error)
 
-    const handleSignin = (e) => {
+    const handleLogin = (e) => {
         e.preventDefault()
         dispatch(fetchOrUpdateToken(signinValue.email, signinValue.password))
     }
 
     useEffect(() => {
         if (status === 'resolved' && data != null) {
-            navigate('/user')
+            navigate('/profile')
         }
     }, [navigate, token, status, data])
 
     return (
-        <form onSubmit={handleSignin} noValidate>
+        <form onSubmit={handleLogin} noValidate>
             <Input
                 label="Username"
                 type="text"
@@ -64,12 +72,13 @@ export default function FormSignin() {
                 autoComplete="off"
             />
 
-            <SignInButton>Sign In</SignInButton>
-            <p>
+            {/* <SignInButton>Sign In</SignInButton> */}
+            <Button title={'Sign In'} name="LOGIN" />
+            <StyledErrorMessage>
                 {status === 'rejected'
-                    ? '[!]Error - Your password or your email is not valid'
+                    ? error.status + ' ' + error.message
                     : ''}
-            </p>
+            </StyledErrorMessage>
         </form>
     )
 }

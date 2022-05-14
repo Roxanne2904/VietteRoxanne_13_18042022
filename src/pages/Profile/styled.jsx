@@ -45,3 +45,7 @@ export const AccountContentWrapperCta = styled.div`
         flex: 0;
     }
 `
+
+export const MainTitle = styled.h1`
+    ${(props) => props.state === 'open' && `margin: 0.67em 0 0 0;`}
+`

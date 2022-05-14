@@ -1,5 +1,5 @@
 import { actionsProfile } from './profileReducer'
-import { actionsToken } from '../../components/FormSignin/tokenReducer'
+import { actionsToken } from '../../components/FormLogin/tokenReducer'
 import setAxiosInstance from '../../utils/axiosInstance'
 // import axios from 'axios'
 //*selectors

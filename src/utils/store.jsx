@@ -2,10 +2,10 @@
 // import thunk from 'redux-thunk'
 import { configureStore } from '@reduxjs/toolkit'
 //*reducers
-import tokenReducer from '../components/FormSignin/tokenReducer'
-import signinValueReducer from '../components/FormSignin/signinValueReducer'
+import tokenReducer from '../components/FormLogin/tokenReducer'
+import signinValueReducer from '../components/FormLogin/signinValueReducer'
 import editValueReducer from '../components/FormEditName/editValueReducer'
-import profileReducer from '../pages/User/profileReducer'
+import profileReducer from '../pages/Profile/profileReducer'
 import editProfileReducer from '../components/FormEditName/editProfileReducer'
 import toggleEditNameReducer from '../components/Button/toggleEditNameReducer'
 import widthReducer from '../components/Header/widthReducer'

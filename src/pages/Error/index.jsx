@@ -45,7 +45,7 @@ export default function Error() {
                     <li>you are connected to the internet</li>
                 </ul>
             </span>
-            <ErrorLink to="/sign-in">Signin</ErrorLink>
+            <ErrorLink to="/login">Sign In</ErrorLink>
         </ErrorContent>
     )
 }

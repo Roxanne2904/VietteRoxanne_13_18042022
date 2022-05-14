@@ -2,12 +2,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 //*Components
-import FormSignin from '../../components/FormSignin/index.jsx'
+import FormSignin from '../../components/FormLogin/index.jsx'
 
 //*Styled
 import { Main, SignInContent } from './styled.jsx'
 
-export default function SignIn() {
+export default function Login() {
     return (
         <div>
             <Main>

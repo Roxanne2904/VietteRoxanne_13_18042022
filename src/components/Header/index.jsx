@@ -4,8 +4,8 @@ import { faSignOut, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 //*actions
-import { actionsToken } from '../FormSignin/tokenReducer'
-import { actionsProfile } from '../../pages/User/profileReducer'
+import { actionsToken } from '../FormLogin/tokenReducer'
+import { actionsProfile } from '../../pages/Profile/profileReducer'
 import { actionsEditProfile } from '../FormEditName/editProfileReducer'
 import { actionsEditName } from '../Button/toggleEditNameReducer'
 import { actionsWidth } from './widthReducer'
@@ -16,7 +16,7 @@ import {
     selectEditProfile,
     selectWidth,
 } from '../../utils/selectors'
-
+//*service
 // import { selectInputValue } from '../../utils/selectors'
 //*STYLED
 import {
@@ -26,6 +26,7 @@ import {
     SrOnly,
     MainNavItem,
     MainNavItemLogOut,
+    StyledIconProfile,
 } from './styled'
 import { useEffect } from 'react'
 
@@ -72,14 +73,19 @@ export default function Header() {
                 </MainNavLogo>
                 <div>
                     {token.status !== 'resolved' ? (
-                        <MainNavItem to="/sign-in">
-                            <FontAwesomeIcon icon={faUserCircle} />
+                        <MainNavItem to="/login" $profile>
+                            <StyledIconProfile>
+                                <FontAwesomeIcon icon={faUserCircle} />
+                            </StyledIconProfile>
                             Sign In
                         </MainNavItem>
                     ) : (
                         <div>
-                            <MainNavItem to="/user">
-                                <FontAwesomeIcon icon={faUserCircle} />
+                            <MainNavItem to="/profile" $profile>
+                                <StyledIconProfile>
+                                    <FontAwesomeIcon icon={faUserCircle} />
+                                </StyledIconProfile>
+
                                 {firstName === editFirstName
                                     ? firstName
                                     : !editFirstName
@@ -93,8 +99,10 @@ export default function Header() {
                                     handleLogOut()
                                 }}
                             >
-                                <FontAwesomeIcon icon={faSignOut} />
-                                {currentWidth !== null && currentWidth < 410
+                                <StyledIconProfile $logOut>
+                                    <FontAwesomeIcon icon={faSignOut} />
+                                </StyledIconProfile>
+                                {currentWidth !== null && currentWidth < 450
                                     ? ''
                                     : ' Sign Out'}
                             </MainNavItemLogOut>

@@ -1,7 +1,7 @@
 //*actions
 import { actionsEditProfile } from './editProfileReducer'
-import { actionsProfile } from '../../pages/User/profileReducer'
-import { actionsToken } from '../FormSignin/tokenReducer'
+import { actionsProfile } from '../../pages/Profile/profileReducer'
+import { actionsToken } from '../FormLogin/tokenReducer'
 //*selectors
 import { selectEditProfile } from '../../utils/selectors'
 //*axios

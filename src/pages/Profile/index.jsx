@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 //*selectors
 import { selectToken } from '../../utils/selectors'
 // import { selectInputValue } from '../../utils/selectors'
@@ -7,6 +8,7 @@ import {
     selectProfile,
     selectEditProfile,
     selectEditName,
+    selectEditValue,
 } from '../../utils/selectors'
 //*Components
 import Button from '../../components/Button/index'
@@ -14,7 +16,8 @@ import CardTransaction from '../../components/CardTransactions'
 import FormEditName from '../../components/FormEditName'
 //*actions
 import { fetchOrUpdateProfile } from './actions'
-
+//service
+import { test } from '../../components/FormEditName/service'
 //*Styled
 import {
     Main,
@@ -22,22 +25,24 @@ import {
     SrOnly,
     Account,
     AccountContentWrapperCta,
+    MainTitle,
 } from './styled'
 
-export default function User() {
+export default function Profile() {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const token = useSelector(selectToken)
-    const currentToken = token.data.token
+    const currentToken = token.data !== null && token.data.token
 
     const profile = useSelector(selectProfile)
     const { firstName, lastName } = profile.data !== null && profile.data
 
     const editProfile = useSelector(selectEditProfile)
-    const { data } = editProfile
+    const editDataProfile = editProfile.data !== null && editProfile.data
 
-    const editFirstName = data !== null && data.firstName
-    const editLastName = data !== null && data.lastName
+    const editValue = useSelector(selectEditValue)
+    const { editFirstName, editLastName } = editValue
 
     const editNameState = useSelector(selectEditName)
 
@@ -45,31 +50,43 @@ export default function User() {
     // console.log(!editFirstName)
 
     useEffect(() => {
+        if (!token.data) {
+            navigate('/login')
+        }
         dispatch(fetchOrUpdateProfile(currentToken))
-    }, [currentToken, dispatch])
+    }, [dispatch, navigate, token.data, currentToken])
 
-    return (
+    // console.log(!token.data)
+    return !token.data ? (
+        '...'
+    ) : (
         <div>
             <Main>
                 <HeaderContent>
-                    <h1>
+                    <MainTitle state={editNameState}>
                         Welcome back
                         <br />
-                        {firstName === editFirstName
-                            ? firstName
-                            : !editFirstName
-                            ? firstName
-                            : editFirstName}
-                        {lastName === editLastName
-                            ? ' ' + lastName
-                            : !editLastName
-                            ? ' ' + lastName
-                            : ' ' + editLastName}
-                    </h1>
+                        {editNameState === 'open'
+                            ? ''
+                            : test(
+                                  firstName,
+                                  editFirstName,
+                                  editDataProfile.firstName
+                              )}
+                        {editNameState === 'open'
+                            ? ''
+                            : ' ' +
+                              test(
+                                  lastName,
+                                  editLastName,
+                                  editDataProfile.lastName
+                              )}
+                    </MainTitle>
                     <Button
-                        title={
-                            editNameState === 'open' ? 'Cancel' : 'Edit Name'
-                        }
+                        title="Edit Name"
+                        //{
+                        //     editNameState === 'open' ? 'Cancel' : 'Edit Name'
+                        // }
                         name="EDIT_NAME"
                     />
                     <FormEditName />

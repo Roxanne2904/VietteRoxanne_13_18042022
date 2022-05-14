@@ -1,6 +1,14 @@
-import { InputWrapper, StyledLabel } from './styled'
+import { InputWrapper } from './styled'
 
-export default function Input({ label, type, id, autoComplete, event, value }) {
+export default function Input({
+    label,
+    type,
+    id,
+    autoComplete,
+    event,
+    value,
+    placeholder,
+}) {
     if (!event) {
         return (
             <InputWrapper>
@@ -19,7 +27,7 @@ export default function Input({ label, type, id, autoComplete, event, value }) {
         if (id === 'firstName' || id === 'name') {
             return (
                 <InputWrapper $editName>
-                    <StyledLabel>
+                    <label>
                         {label}
                         <input
                             type={type}
@@ -27,8 +35,9 @@ export default function Input({ label, type, id, autoComplete, event, value }) {
                             autoComplete={autoComplete}
                             onChange={event}
                             value={value}
+                            placeholder={placeholder}
                         />
-                    </StyledLabel>
+                    </label>
                 </InputWrapper>
             )
         } else {

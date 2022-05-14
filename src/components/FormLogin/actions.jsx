@@ -30,6 +30,7 @@ export function fetchOrUpdateToken(email, password) {
                 window.location.pathname = '/error'
             } else {
                 const currentError = error.response.data
+                // console.log(currentError.message)
                 dispatch(actionsToken.tokenRejected(currentError))
             }
         }

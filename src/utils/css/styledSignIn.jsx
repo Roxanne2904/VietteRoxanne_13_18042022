@@ -17,4 +17,5 @@ export const SIGNIN_BUTTON = `
     border-color: #00bc77;
     background-color: #00bc77;
     color: #fff;
+    cursor: pointer;
 `

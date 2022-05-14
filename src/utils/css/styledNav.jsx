@@ -11,9 +11,11 @@ export const MAIN_NAV_LOGO = `
 export const MAIN_NAV_LOGO_IMG = `
     max-width: 100%;
     width: 200px;
+    
 `
 
 export const MAIN_NAV_ITEM = `
     text-decoration: none;
     margin-right: 0.5rem;
+    cursor: pointer;   
 `
