@@ -1,12 +1,12 @@
 // import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 //*actions
-import { actionsEditName } from './toggleEditNameReducer'
-import { resetToInitialState } from '../FormEditName/editValueReducer'
+import { actionsEditForm } from './toggleEditFormReducer'
+import { resetToInitialState } from '../FormEditName/editValuesReducer'
 //*selectors
-import { selectEditName } from '../../utils/selectors'
+import { selectToggleEditForm } from '../../utils/selectors'
 //*actions
-import { toggleUpdateName } from './actions'
+import { toggleEditFormAndResetEditValues } from './actions'
 
 //*styled
 import {
@@ -19,7 +19,7 @@ import {
 export default function Button({ title, name }) {
     const dispatch = useDispatch()
 
-    const editNameState = useSelector(selectEditName)
+    const toggleEditForm = useSelector(selectToggleEditForm)
     // console.log(editNameState)
 
     // const toggleUpdateName = () => {
@@ -33,11 +33,11 @@ export default function Button({ title, name }) {
         case 'EDIT_NAME':
             return (
                 <EditNameButton
-                    close={editNameState}
+                    close={toggleEditForm}
                     onClick={() =>
                         dispatch(
-                            toggleUpdateName(
-                                actionsEditName.toggleEditName(),
+                            toggleEditFormAndResetEditValues(
+                                actionsEditForm.toggleEditForm(),
                                 resetToInitialState()
                             )
                         )
@@ -57,8 +57,8 @@ export default function Button({ title, name }) {
                     type="button"
                     onClick={() =>
                         dispatch(
-                            toggleUpdateName(
-                                actionsEditName.toggleEditName(),
+                            toggleEditFormAndResetEditValues(
+                                actionsEditForm.toggleEditForm(),
                                 resetToInitialState()
                             )
                         )

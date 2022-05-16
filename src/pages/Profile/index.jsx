@@ -7,13 +7,14 @@ import { selectToken } from '../../utils/selectors'
 import {
     selectProfile,
     selectEditProfile,
-    selectEditName,
-    selectEditValue,
+    selectToggleEditForm,
+    selectEditValues,
 } from '../../utils/selectors'
 //*Components
 import Button from '../../components/Button/index'
 import CardTransaction from '../../components/CardTransactions'
 import FormEditName from '../../components/FormEditName'
+import Error from '../Error'
 //*actions
 import { fetchOrUpdateProfile } from './actions'
 //service
@@ -26,6 +27,7 @@ import {
     Account,
     AccountContentWrapperCta,
     MainTitle,
+    StyledUpdatingTxt,
 } from './styled'
 
 export default function Profile() {
@@ -41,13 +43,13 @@ export default function Profile() {
     const editProfile = useSelector(selectEditProfile)
     const editDataProfile = editProfile.data !== null && editProfile.data
 
-    const editValue = useSelector(selectEditValue)
-    const { editFirstName, editLastName } = editValue
+    const editValues = useSelector(selectEditValues)
+    const { editFirstName, editLastName } = editValues
 
-    const editNameState = useSelector(selectEditName)
+    const toggleEditForm = useSelector(selectToggleEditForm)
 
     // console.log(editProfile)
-    // console.log(!editFirstName)
+    console.log(token.data)
 
     useEffect(() => {
         if (!token.data) {
@@ -56,24 +58,25 @@ export default function Profile() {
         dispatch(fetchOrUpdateProfile(currentToken))
     }, [dispatch, navigate, token.data, currentToken])
 
-    // console.log(!token.data)
+    console.log(editProfile)
+
     return !token.data ? (
         '...'
-    ) : (
+    ) : profile.status !== 'rejected' ? (
         <div>
             <Main>
                 <HeaderContent>
-                    <MainTitle state={editNameState}>
+                    <MainTitle state={toggleEditForm}>
                         Welcome back
                         <br />
-                        {editNameState === 'open'
+                        {toggleEditForm === 'open'
                             ? ''
                             : test(
                                   firstName,
                                   editFirstName,
                                   editDataProfile.firstName
                               )}
-                        {editNameState === 'open'
+                        {toggleEditForm === 'open'
                             ? ''
                             : ' ' +
                               test(
@@ -81,6 +84,15 @@ export default function Profile() {
                                   editLastName,
                                   editDataProfile.lastName
                               )}
+                        {editProfile.status === 'pending' ||
+                        editProfile.status === 'updating' ? (
+                            <StyledUpdatingTxt>
+                                name update in progress <br />
+                                ...
+                            </StyledUpdatingTxt>
+                        ) : (
+                            ''
+                        )}
                     </MainTitle>
                     <Button
                         title="Edit Name"
@@ -133,5 +145,7 @@ export default function Profile() {
                 </Account>
             </Main>
         </div>
+    ) : (
+        <Error />
     )
 }

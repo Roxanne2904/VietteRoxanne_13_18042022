@@ -1,5 +1,5 @@
 import { actionsProfile } from './profileReducer'
-import { actionsToken } from '../../components/FormLogin/tokenReducer'
+// import { actionsToken } from '../../components/FormLogin/tokenReducer'
 import setAxiosInstance from '../../utils/axiosInstance'
 // import axios from 'axios'
 //*selectors
@@ -26,7 +26,7 @@ export function fetchOrUpdateProfile(token) {
             dispatch(actionsProfile.profileResolved(data))
         } catch (error) {
             if (error.response === undefined) {
-                dispatch(actionsToken.tokenDisconnected())
+                // dispatch(actionsToken.tokenDisconnected())
                 dispatch(actionsProfile.profileDisconnected())
                 window.location.pathname = '/error'
             } else {

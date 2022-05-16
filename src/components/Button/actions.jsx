@@ -1,6 +1,9 @@
-export const toggleUpdateName = (actionsEditName, actionsEditValue) => {
+export const toggleEditFormAndResetEditValues = (
+    actionsEditForm,
+    actionsEditValue
+) => {
     return async (dispatch) => {
-        dispatch(actionsEditName)
+        dispatch(actionsEditForm)
         dispatch(actionsEditValue)
     }
 }

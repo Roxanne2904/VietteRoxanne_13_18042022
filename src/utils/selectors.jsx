@@ -13,21 +13,21 @@ export const selectEditProfile = (state) => {
     return editProfileState
 }
 
-export const selectSigninValue = (state) => {
-    let signinValueState = state.persistedReducer.signinValue
-    return signinValueState
+export const selectLoginValues = (state) => {
+    let loginValueState = state.persistedReducer.loginValues
+    return loginValueState
 }
-export const selectEditValue = (state) => {
-    let editValueState = state.persistedReducer.editValue
+export const selectEditValues = (state) => {
+    let editValueState = state.persistedReducer.editValues
     return editValueState
 }
 
-export const selectEditName = (state) => {
-    let editNameState = state.persistedReducer.editName
-    return editNameState
+export const selectToggleEditForm = (state) => {
+    let toggleEditForm = state.persistedReducer.toggleEditForm
+    return toggleEditForm
 }
 
-export const selectWidth = (state) => {
-    let widthState = state.persistedReducer.width
-    return widthState
+export const selectScreenWidth = (state) => {
+    let screenWidth = state.persistedReducer.screenWidth
+    return screenWidth
 }

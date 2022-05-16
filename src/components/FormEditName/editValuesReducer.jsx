@@ -6,7 +6,7 @@ const initialState = {
 }
 
 const editValueSlide = createSlice({
-    name: 'editValue',
+    name: 'editValues',
     initialState,
     reducers: {
         resetToInitialState: (draft) => {

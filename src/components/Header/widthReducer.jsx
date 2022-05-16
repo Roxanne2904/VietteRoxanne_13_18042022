@@ -4,17 +4,17 @@ const initialState = {
     currentWidth: null,
 }
 
-const widthSlide = createSlice({
+const screenWidthSlide = createSlice({
     name: 'width',
     initialState,
     reducers: {
-        resetWidth: {
+        resetScreenWidth: {
             reducer: (draft) => {
                 draft.currentWidth = null
                 return
             },
         },
-        updateWidth: {
+        updateScreenWidth: {
             prepare: (width) => ({ payload: width }),
             reducer: (draft, action) => {
                 draft.currentWidth = action.payload
@@ -24,6 +24,6 @@ const widthSlide = createSlice({
     },
 })
 
-const { actions, reducer } = widthSlide
+const { actions, reducer } = screenWidthSlide
 export default reducer
-export const actionsWidth = actions
+export const actionsScreenWidth = actions

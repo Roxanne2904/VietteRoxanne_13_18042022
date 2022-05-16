@@ -6,12 +6,12 @@ import styled from 'styled-components'
 import Button from '../Button/index'
 //*actions
 import { fetchOrUpdateToken } from './actions'
-import { getEmail, getPassword } from './signinValueReducer.jsx'
+import { getEmail, getPassword } from './loginValuesReducer.jsx'
 // import { actions } from './tokenReducer'
 
 //*select
 import { selectToken } from '../../utils/selectors.jsx'
-import { selectSigninValue } from '../../utils/selectors.jsx'
+import { selectLoginValues } from '../../utils/selectors.jsx'
 import Input from '../Input/index.jsx'
 
 //*Styled
@@ -27,18 +27,19 @@ export default function FormLogin() {
     // const store = useStore()
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const token = useSelector(selectToken)
-    const signinValue = useSelector(selectSigninValue)
 
-    const { email, password } = signinValue
+    const token = useSelector(selectToken)
+    const loginValues = useSelector(selectLoginValues)
+
+    const { email, password } = loginValues
     const { status, data, error } = token
 
     // console.log(signinValue)
-    console.log(error)
+    // console.log(error)
 
     const handleLogin = (e) => {
         e.preventDefault()
-        dispatch(fetchOrUpdateToken(signinValue.email, signinValue.password))
+        dispatch(fetchOrUpdateToken(loginValues.email, loginValues.password))
     }
 
     useEffect(() => {

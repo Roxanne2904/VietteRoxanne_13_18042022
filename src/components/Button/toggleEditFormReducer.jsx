@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const toggleEditNameSlide = createSlice({
-    name: 'inputValue',
+const toggleEditFormSlide = createSlice({
+    name: 'editForm',
     initialState: 'open',
     reducers: {
-        closeEditName: {
+        resetEditForm: {
             reducer: (state) => {
                 return (state = 'close')
             },
         },
-        toggleEditName: {
+        toggleEditForm: {
             reducer: (state) => {
                 return state === 'open' ? 'close' : 'open'
             },
@@ -17,6 +17,6 @@ const toggleEditNameSlide = createSlice({
     },
 })
 
-const { actions, reducer } = toggleEditNameSlide
-export const actionsEditName = actions
+const { actions, reducer } = toggleEditFormSlide
+export const actionsEditForm = actions
 export default reducer

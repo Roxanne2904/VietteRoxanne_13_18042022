@@ -7,14 +7,14 @@ import { useNavigate } from 'react-router-dom'
 import { actionsToken } from '../FormLogin/tokenReducer'
 import { actionsProfile } from '../../pages/Profile/profileReducer'
 import { actionsEditProfile } from '../FormEditName/editProfileReducer'
-import { actionsEditName } from '../Button/toggleEditNameReducer'
-import { actionsWidth } from './widthReducer'
+import { actionsEditForm } from '../Button/toggleEditFormReducer'
+import { actionsScreenWidth } from './widthReducer'
 //*selectors
 import {
     selectToken,
     selectProfile,
     selectEditProfile,
-    selectWidth,
+    selectScreenWidth,
 } from '../../utils/selectors'
 //*service
 // import { selectInputValue } from '../../utils/selectors'
@@ -43,24 +43,24 @@ export default function Header() {
     const { data } = editProfile
     const editFirstName = data !== null && data.firstName
 
-    const width = useSelector(selectWidth)
-    const { currentWidth } = width
+    const screenWidth = useSelector(selectScreenWidth)
+    const { currentWidth } = screenWidth
 
     useEffect(() => {
         const updateDimensions = () => {
             const currentWidth = window.innerWidth
-            dispatch(actionsWidth.updateWidth(currentWidth))
+            dispatch(actionsScreenWidth.updateScreenWidth(currentWidth))
         }
         window.addEventListener('resize', updateDimensions)
 
         return () => window.removeEventListener('resize', updateDimensions)
-    }, [dispatch, width])
+    }, [dispatch, screenWidth])
 
     const handleLogOut = () => {
         dispatch(actionsToken.tokenDisconnected())
         dispatch(actionsProfile.profileDisconnected())
         dispatch(actionsEditProfile.editProfileDisconnected())
-        dispatch(actionsEditName.closeEditName())
+        dispatch(actionsEditForm.resetEditForm())
         navigate('/')
     }
 

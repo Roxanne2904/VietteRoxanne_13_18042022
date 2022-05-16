@@ -1,7 +1,13 @@
 // import { useSelector } from 'react-redux'
 // import { selectProfile } from '../../utils/selectors'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
+// //*selectors
+// import { selectToken } from '../../utils/selectors'
+//*actions
+import { actionsToken } from '../../components/FormLogin/tokenReducer'
 
 const ErrorContent = styled.section`
     margin: 10px 30px 50px;
@@ -17,13 +23,21 @@ const ErrorLink = styled(Link)`
 `
 
 export default function Error() {
-    // const profile = useSelector(selectProfile)
-    // console.log(profile)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (window.location.pathname !== '/error') {
+            return navigate('/')
+        } else {
+            dispatch(actionsToken.tokenDisconnected())
+        }
+    })
     return (
         <ErrorContent id="error">
             <h1>
                 Oops ! <br />
-                We are not able to recover your datas ...
+                An error has occurred...
             </h1>
             <span>
                 Check if :
@@ -43,6 +57,7 @@ export default function Error() {
                     </li>
                     <li>your internet connexion is stable</li>
                     <li>you are connected to the internet</li>
+                    {/* <li>then, check if you've been correctly log in</li> */}
                 </ul>
             </span>
             <ErrorLink to="/login">Sign In</ErrorLink>

@@ -1,9 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
-
+// import { useDispatch, useSelector } from 'react-redux'
+//*actions
+// import { actionsToken } from '../../components/FormLogin/tokenReducer.jsx'
 //*Components
 import FormSignin from '../../components/FormLogin/index.jsx'
-
+//*selector
+// import { selectToken } from '../../utils/selectors.jsx'
 //*Styled
 import { Main, SignInContent } from './styled.jsx'
 

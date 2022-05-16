@@ -49,3 +49,9 @@ export const AccountContentWrapperCta = styled.div`
 export const MainTitle = styled.h1`
     ${(props) => props.state === 'open' && `margin: 0.67em 0 0 0;`}
 `
+export const StyledUpdatingTxt = styled.em`
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    opacity: 0.5;
+`

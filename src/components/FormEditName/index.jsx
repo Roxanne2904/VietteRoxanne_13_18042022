@@ -5,18 +5,18 @@ import { useSelector, useDispatch } from 'react-redux'
 import Button from '../Button'
 //*selectors
 import {
-    selectEditName,
-    selectEditValue,
+    selectToggleEditForm,
+    selectEditValues,
     selectProfile,
     selectToken,
     selectEditProfile,
 } from '../../utils/selectors'
 //*actions
-import { getEditFirstName, getEditLastName } from './editValueReducer'
+import { getEditFirstName, getEditLastName } from './editValuesReducer'
 import { fetchOrUpdateEditProfile } from './actions'
-import { toggleUpdateName } from '../Button/actions'
-import { resetToInitialState } from './editValueReducer'
-import { actionsEditName } from '../Button/toggleEditNameReducer'
+import { toggleEditFormAndResetEditValues } from '../Button/actions'
+import { resetToInitialState } from './editValuesReducer'
+import { actionsEditForm } from '../Button/toggleEditFormReducer'
 //*service
 import { test } from './service'
 
@@ -50,10 +50,10 @@ export default function FormEditName() {
     const editProfile = useSelector(selectEditProfile)
     const editDataProfile = editProfile.data !== null && editProfile.data
 
-    const editValue = useSelector(selectEditValue)
-    const { editFirstName, editLastName } = editValue
+    const editValues = useSelector(selectEditValues)
+    const { editFirstName, editLastName } = editValues
 
-    const editNameState = useSelector(selectEditName)
+    const editFormState = useSelector(selectToggleEditForm)
 
     // function test(data, editValue, editData) {
     //     if (editValue !== null && editValue !== '') {
@@ -87,15 +87,15 @@ export default function FormEditName() {
             )
         )
         dispatch(
-            toggleUpdateName(
-                actionsEditName.toggleEditName(),
+            toggleEditFormAndResetEditValues(
+                actionsEditForm.toggleEditForm(),
                 resetToInitialState()
             )
         )
     }
 
     return (
-        <StyledForm onSubmit={handleEditName} noValidate state={editNameState}>
+        <StyledForm onSubmit={handleEditName} noValidate state={editFormState}>
             <StyledInputContent>
                 <Input
                     label="First Name"

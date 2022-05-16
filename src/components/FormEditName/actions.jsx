@@ -1,7 +1,7 @@
 //*actions
 import { actionsEditProfile } from './editProfileReducer'
 import { actionsProfile } from '../../pages/Profile/profileReducer'
-import { actionsToken } from '../FormLogin/tokenReducer'
+// import { actionsToken } from '../FormLogin/tokenReducer'
 //*selectors
 import { selectEditProfile } from '../../utils/selectors'
 //*axios
@@ -31,7 +31,6 @@ export function fetchOrUpdateEditProfile(token, firstName, lastName) {
             dispatch(actionsEditProfile.editProfileResolved(data))
         } catch (error) {
             if (error.response === undefined) {
-                dispatch(actionsToken.tokenDisconnected())
                 dispatch(actionsProfile.profileDisconnected())
                 dispatch(actionsEditProfile.editProfileDisconnected())
                 window.location.pathname = '/error'

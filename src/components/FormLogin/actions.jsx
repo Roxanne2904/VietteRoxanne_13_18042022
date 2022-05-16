@@ -25,8 +25,8 @@ export function fetchOrUpdateToken(email, password) {
             dispatch(actionsToken.tokenResolved(data))
         } catch (error) {
             if (error.response === undefined) {
-                dispatch(actionsToken.tokenDisconnected())
-                console.log(error)
+                // dispatch(actionsToken.tokenDisconnected())
+                // console.log(error)
                 window.location.pathname = '/error'
             } else {
                 const currentError = error.response.data
