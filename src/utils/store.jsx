@@ -6,7 +6,7 @@ import tokenReducer from '../components/FormLogin/tokenReducer'
 import loginValuesReducer from '../components/FormLogin/loginValuesReducer'
 import editValuesReducer from '../components/FormEditName/editValuesReducer'
 import profileReducer from '../pages/Profile/profileReducer'
-import editProfileReducer from '../components/FormEditName/editProfileReducer'
+import profileUpdateReducer from '../components/FormEditName/profileUpdateReducer'
 import toggleEditFormReducer from '../components/Button/toggleEditFormReducer'
 import screenWidthReducer from '../components/Header/widthReducer'
 //*redux-persist
@@ -22,7 +22,7 @@ const persistConfig = {
 const reducer = combineReducers({
     token: tokenReducer,
     profile: profileReducer,
-    editProfile: editProfileReducer,
+    profileUpdate: profileUpdateReducer,
     loginValues: loginValuesReducer,
     editValues: editValuesReducer,
     toggleEditForm: toggleEditFormReducer,

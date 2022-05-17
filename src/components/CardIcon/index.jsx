@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 //*STYLED
 import { FeaturesItem, FeatureIcon, FeatureItemTitle } from './styled.jsx'
 
@@ -9,4 +10,10 @@ export default function CardIcon({ icon, title, text }) {
             <p>{text}</p>
         </FeaturesItem>
     )
+}
+
+CardIcon.propTypes = {
+    icon: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
 }

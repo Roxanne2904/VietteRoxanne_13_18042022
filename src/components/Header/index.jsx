@@ -6,14 +6,14 @@ import { useNavigate } from 'react-router-dom'
 //*actions
 import { actionsToken } from '../FormLogin/tokenReducer'
 import { actionsProfile } from '../../pages/Profile/profileReducer'
-import { actionsEditProfile } from '../FormEditName/editProfileReducer'
+import { actionsProfileUpdate } from '../FormEditName/profileUpdateReducer'
 import { actionsEditForm } from '../Button/toggleEditFormReducer'
 import { actionsScreenWidth } from './widthReducer'
 //*selectors
 import {
     selectToken,
     selectProfile,
-    selectEditProfile,
+    selectProfileUpdate,
     selectScreenWidth,
 } from '../../utils/selectors'
 //*service
@@ -39,7 +39,7 @@ export default function Header() {
     const profile = useSelector(selectProfile)
     const { firstName } = profile.data !== null && profile.data
 
-    const editProfile = useSelector(selectEditProfile)
+    const editProfile = useSelector(selectProfileUpdate)
     const { data } = editProfile
     const editFirstName = data !== null && data.firstName
 
@@ -59,7 +59,7 @@ export default function Header() {
     const handleLogOut = () => {
         dispatch(actionsToken.tokenDisconnected())
         dispatch(actionsProfile.profileDisconnected())
-        dispatch(actionsEditProfile.editProfileDisconnected())
+        dispatch(actionsProfileUpdate.profileUpdateDisconnected())
         dispatch(actionsEditForm.resetEditForm())
         navigate('/')
     }

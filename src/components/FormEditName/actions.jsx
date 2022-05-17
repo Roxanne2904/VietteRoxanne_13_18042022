@@ -1,25 +1,30 @@
 //*actions
-import { actionsEditProfile } from './editProfileReducer'
+import { actionsProfileUpdate } from './profileUpdateReducer'
 import { actionsProfile } from '../../pages/Profile/profileReducer'
-// import { actionsToken } from '../FormLogin/tokenReducer'
 //*selectors
-import { selectEditProfile } from '../../utils/selectors'
+import { selectProfileUpdate } from '../../utils/selectors'
 //*axios
 import setAxiosInstance from '../../utils/axiosInstance'
 
-export function fetchOrUpdateEditProfile(token, firstName, lastName) {
+/**
+ * This async function allows you to set up the thunk middleware to use dispatch and getState
+ * and activate several actions to fetch or update datas from profile update.
+ * @param { String } token
+ * @param { String } firstName
+ * @param { String } lastName
+ * @returns { async function } It return an async function using redux thunk to dispatch several
+ * actions that depend on the axios method
+ */
+
+export function fetchOrUpdateProfileUpdate(token, firstName, lastName) {
     const axiosInstance = setAxiosInstance(token)
     return async (dispatch, getState) => {
-        const status = selectEditProfile(getState()).status
+        const status = selectProfileUpdate(getState()).status
         if (status === 'pending' || status === 'updating') {
             return
         }
 
-        dispatch(actionsEditProfile.editProfileFetching())
-
-        // console.log(token)
-        // console.log(firstName)
-        // console.log(lastName)
+        dispatch(actionsProfileUpdate.profileUpdateFetching())
 
         try {
             const response = await axiosInstance.put('/user/profile', {
@@ -28,23 +33,18 @@ export function fetchOrUpdateEditProfile(token, firstName, lastName) {
             })
             const data = await response.data.body
 
-            dispatch(actionsEditProfile.editProfileResolved(data))
+            dispatch(actionsProfileUpdate.profileUpdateResolved(data))
         } catch (error) {
             if (error.response === undefined) {
                 dispatch(actionsProfile.profileDisconnected())
-                dispatch(actionsEditProfile.editProfileDisconnected())
+                dispatch(actionsProfileUpdate.profileUpdateDisconnected())
                 window.location.pathname = '/error'
             } else {
                 const currentError = error.response.data
-                dispatch(actionsEditProfile.editProfileRejected(currentError))
+                dispatch(
+                    actionsProfileUpdate.profileUpdateRejected(currentError)
+                )
             }
         }
     }
 }
-
-// export function keepProfileDataIfNoEdit(dispatch, getState) {
-//     const newFirstName = selectEditProfile(getState()).data.firstName
-//     const newLastName = selectEditProfile(getState()).data.lastName
-
-//     console.log(newFirstName)
-// }

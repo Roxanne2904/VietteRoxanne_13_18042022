@@ -1,4 +1,4 @@
-export const SIGNIN_CONTENT = `
+export const LOGIN_CONTENT = `
     box-sizing: border-box;
     background-color: white;
     width: 300px;
@@ -7,7 +7,7 @@ export const SIGNIN_CONTENT = `
     padding: 2rem;
 `
 
-export const SIGNIN_BUTTON = `
+export const LOGIN_BUTTON = `
     display: block;
     width: 100%;
     padding: 8px;

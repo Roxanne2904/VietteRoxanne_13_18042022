@@ -6,17 +6,17 @@ const initialState = {
     error: null, //* l'erreur lorsque la requête échoue
 }
 
-const editProfileReducer = createSlice({
-    name: 'editProfile',
+const profileUpdateSlice = createSlice({
+    name: 'profileUpdate',
     initialState,
     reducers: {
-        editProfileDisconnected: (draft) => {
+        profileUpdateDisconnected: (draft) => {
             draft.status = 'void'
             draft.data = null
             draft.error = null
             return
         },
-        editProfileFetching: (draft) => {
+        profileUpdateFetching: (draft) => {
             if (draft.status === 'void') {
                 draft.status = 'pending'
                 return
@@ -30,7 +30,7 @@ const editProfileReducer = createSlice({
             }
             return
         },
-        editProfileResolved: {
+        profileUpdateResolved: {
             prepare: (data) => ({ payload: data }),
             reducer: (draft, action) => {
                 if (draft.status === 'pending' || draft.status === 'updating') {
@@ -42,7 +42,7 @@ const editProfileReducer = createSlice({
                 return
             },
         },
-        editProfileRejected: {
+        profileUpdateRejected: {
             prepare: (error) => ({ payload: error }),
             reducer: (draft, action) => {
                 if (draft.status === 'pending' || draft.status === 'updating') {
@@ -57,8 +57,8 @@ const editProfileReducer = createSlice({
     },
 })
 
-const { actions, reducer } = editProfileReducer
+const { actions, reducer } = profileUpdateSlice
 
-export const actionsEditProfile = actions
+export const actionsProfileUpdate = actions
 
 export default reducer

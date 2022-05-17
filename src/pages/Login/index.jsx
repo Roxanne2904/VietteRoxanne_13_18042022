@@ -4,24 +4,24 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 //*actions
 // import { actionsToken } from '../../components/FormLogin/tokenReducer.jsx'
 //*Components
-import FormSignin from '../../components/FormLogin/index.jsx'
+import FormLogin from '../../components/FormLogin/index.jsx'
 //*selector
 // import { selectToken } from '../../utils/selectors.jsx'
 //*Styled
-import { Main, SignInContent } from './styled.jsx'
+import { Main, LoginContent } from './styled.jsx'
 
 export default function Login() {
     return (
         <div>
             <Main>
-                <SignInContent>
+                <LoginContent>
                     <FontAwesomeIcon
                         icon={faUserCircle}
                         className="sign-in-icon"
                     />
                     <h1>Sign In</h1>
-                    <FormSignin />
-                </SignInContent>
+                    <FormLogin />
+                </LoginContent>
             </Main>
         </div>
     )

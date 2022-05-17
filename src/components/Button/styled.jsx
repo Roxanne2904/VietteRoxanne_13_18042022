@@ -1,19 +1,25 @@
 import styled from 'styled-components'
 //*CSS
-import { SIGNIN_BUTTON } from '../../utils/css/styledSignIn'
+import { LOGIN_BUTTON } from '../../utils/css/styledLogin'
 
 const size = '720px'
 const xsSize = '390px'
+const mainColor = '#00bc77'
 
-export const SignInButton = styled.button`
-    ${SIGNIN_BUTTON}
+const mainPattern = `
+border-color: ${mainColor};
+background-color: ${mainColor};
+font-weight: bold;`
+
+export const LoginButton = styled.button`
+    ${LOGIN_BUTTON}
 `
 
 export const MainButtonStyle = styled.button`
-    border: #00bc77 solid 2px;
+    border: ${mainColor} solid 2px;
+    color: ${mainColor};
     border-radius: 5px;
     background-color: #fff;
-    color: #00bc77;
     font-weight: bold;
     padding: 8px 10px;
     margin: 0 7.5px;
@@ -26,23 +32,19 @@ export const MainButtonStyle = styled.button`
     }
 `
 export const EditNameButton = styled.button`
-    border-color: #00bc77;
-    background-color: #00bc77;
+    ${mainPattern}
     color: #fff;
-    font-weight: bold;
     padding: 10px;
     cursor: pointer;
     display: ${(props) => (props.close === 'close' ? 'block' : 'none')};
 `
 export const TransactionButton = styled.button`
+    ${mainPattern}
     display: block;
     width: 100%;
     padding: 8px;
     font-size: 1.1rem;
-    font-weight: bold;
     margin-top: 1rem;
-    border-color: #00bc77;
-    background-color: #00bc77;
     color: #fff;
     cursor: pointer;
     @media (min-width: ${size}) {

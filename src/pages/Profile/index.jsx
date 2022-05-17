@@ -6,7 +6,7 @@ import { selectToken } from '../../utils/selectors'
 // import { selectInputValue } from '../../utils/selectors'
 import {
     selectProfile,
-    selectEditProfile,
+    selectProfileUpdate,
     selectToggleEditForm,
     selectEditValues,
 } from '../../utils/selectors'
@@ -40,7 +40,7 @@ export default function Profile() {
     const profile = useSelector(selectProfile)
     const { firstName, lastName } = profile.data !== null && profile.data
 
-    const editProfile = useSelector(selectEditProfile)
+    const editProfile = useSelector(selectProfileUpdate)
     const editDataProfile = editProfile.data !== null && editProfile.data
 
     const editValues = useSelector(selectEditValues)
@@ -99,7 +99,7 @@ export default function Profile() {
                         //{
                         //     editNameState === 'open' ? 'Cancel' : 'Edit Name'
                         // }
-                        name="EDIT_NAME"
+                        name="EDIT_FORM"
                     />
                     <FormEditName />
                 </HeaderContent>

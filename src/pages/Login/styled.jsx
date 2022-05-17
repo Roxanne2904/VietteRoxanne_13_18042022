@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 //*CSS
-import { SIGNIN_CONTENT } from '../../utils/css/styledSignIn.jsx'
+import { LOGIN_CONTENT } from '../../utils/css/styledLogin.jsx'
 import { MAIN, BG_DARK } from '../../utils/css/styledGobal.jsx'
 
 export const Main = styled.main`
@@ -8,6 +8,6 @@ export const Main = styled.main`
     ${BG_DARK}
 `
 
-export const SignInContent = styled.section`
-    ${SIGNIN_CONTENT}
+export const LoginContent = styled.section`
+    ${LOGIN_CONTENT}
 `

@@ -9,11 +9,11 @@ import {
     selectEditValues,
     selectProfile,
     selectToken,
-    selectEditProfile,
+    selectProfileUpdate,
 } from '../../utils/selectors'
 //*actions
 import { getEditFirstName, getEditLastName } from './editValuesReducer'
-import { fetchOrUpdateEditProfile } from './actions'
+import { fetchOrUpdateProfileUpdate } from './actions'
 import { toggleEditFormAndResetEditValues } from '../Button/actions'
 import { resetToInitialState } from './editValuesReducer'
 import { actionsEditForm } from '../Button/toggleEditFormReducer'
@@ -47,7 +47,7 @@ export default function FormEditName() {
     console.log(data)
     const { firstName, lastName } = data !== null && data
 
-    const editProfile = useSelector(selectEditProfile)
+    const editProfile = useSelector(selectProfileUpdate)
     const editDataProfile = editProfile.data !== null && editProfile.data
 
     const editValues = useSelector(selectEditValues)
@@ -80,7 +80,7 @@ export default function FormEditName() {
     const handleEditName = (e) => {
         e.preventDefault()
         dispatch(
-            fetchOrUpdateEditProfile(
+            fetchOrUpdateProfileUpdate(
                 currentToken,
                 test(firstName, editFirstName, editDataProfile.firstName),
                 test(lastName, editLastName, editDataProfile.lastName)

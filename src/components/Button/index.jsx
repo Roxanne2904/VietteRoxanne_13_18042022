@@ -1,16 +1,15 @@
-// import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
 //*actions
 import { actionsEditForm } from './toggleEditFormReducer'
+import { toggleEditFormAndResetEditValues } from './actions'
+//*actionsEditValues
 import { resetToInitialState } from '../FormEditName/editValuesReducer'
 //*selectors
 import { selectToggleEditForm } from '../../utils/selectors'
-//*actions
-import { toggleEditFormAndResetEditValues } from './actions'
-
 //*styled
 import {
-    SignInButton,
+    LoginButton,
     MainButtonStyle,
     EditNameButton,
     TransactionButton,
@@ -18,22 +17,15 @@ import {
 
 export default function Button({ title, name }) {
     const dispatch = useDispatch()
-
-    const toggleEditForm = useSelector(selectToggleEditForm)
-    // console.log(editNameState)
-
-    // const toggleUpdateName = () => {
-    //     dispatch(actionsEditName.toggleEditName())
-    //     dispatch(resetToInitialState())
-    // }
+    const string_strToggleEditForm = useSelector(selectToggleEditForm)
 
     switch (name) {
         case 'LOGIN':
-            return <SignInButton>{title}</SignInButton>
-        case 'EDIT_NAME':
+            return <LoginButton>{title}</LoginButton>
+        case 'EDIT_FORM':
             return (
                 <EditNameButton
-                    close={toggleEditForm}
+                    close={string_strToggleEditForm}
                     onClick={() =>
                         dispatch(
                             toggleEditFormAndResetEditValues(
@@ -70,4 +62,9 @@ export default function Button({ title, name }) {
         default:
             return
     }
+}
+
+Button.propTypes = {
+    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
 }

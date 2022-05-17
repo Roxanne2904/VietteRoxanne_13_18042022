@@ -8,9 +8,9 @@ export const selectProfile = (state) => {
     return profileState
 }
 
-export const selectEditProfile = (state) => {
-    let editProfileState = state.persistedReducer.editProfile
-    return editProfileState
+export const selectProfileUpdate = (state) => {
+    let profileUpdateState = state.persistedReducer.profileUpdate
+    return profileUpdateState
 }
 
 export const selectLoginValues = (state) => {
