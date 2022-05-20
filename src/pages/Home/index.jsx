@@ -2,8 +2,6 @@ import CardIcon from '../../components/CardIcon/index.jsx'
 import iconChat from '../../assets/img/icon-chat.png'
 import iconMoney from '../../assets/img/icon-money.png'
 import iconSecurity from '../../assets/img/icon-security.png'
-// import { useNavigate } from 'react-router-dom'
-// import { useEffect } from 'react'
 //*STYLED
 import {
     Hero,

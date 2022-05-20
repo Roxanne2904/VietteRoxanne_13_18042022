@@ -1,14 +1,12 @@
-// import { combineReducers, createStore, applyMiddleware } from 'redux'
-// import thunk from 'redux-thunk'
 import { configureStore } from '@reduxjs/toolkit'
 //*reducers
 import tokenReducer from '../components/FormLogin/tokenReducer'
-import loginValuesReducer from '../components/FormLogin/loginValuesReducer'
-import editValuesReducer from '../components/FormEditName/editValuesReducer'
+import loginInputValuesReducer from '../components/FormLogin/loginInputValuesReducer'
+import InputValuesToUpdateReducer from '../components/FormEditName/InputValuesToUpdateReducer'
 import profileReducer from '../pages/Profile/profileReducer'
 import profileUpdateReducer from '../components/FormEditName/profileUpdateReducer'
 import toggleEditFormReducer from '../components/Button/toggleEditFormReducer'
-import screenWidthReducer from '../components/Header/widthReducer'
+import screenWidthReducer from '../components/Header/screenWidthReducer'
 //*redux-persist
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist'
@@ -23,8 +21,8 @@ const reducer = combineReducers({
     token: tokenReducer,
     profile: profileReducer,
     profileUpdate: profileUpdateReducer,
-    loginValues: loginValuesReducer,
-    editValues: editValuesReducer,
+    loginInputValues: loginInputValuesReducer,
+    InputValuesToUpdate: InputValuesToUpdateReducer,
     toggleEditForm: toggleEditFormReducer,
     screenWidth: screenWidthReducer,
 })

@@ -1,13 +1,7 @@
 import { actionsProfile } from './profileReducer'
-// import { actionsToken } from '../../components/FormLogin/tokenReducer'
 import setAxiosInstance from '../../utils/axiosInstance'
-// import axios from 'axios'
 //*selectors
 import { selectProfile } from '../../utils/selectors'
-// import { selectToken } from '../../utils/selectors'
-// import { selectInputValue } from '../../utils/selectors'
-
-// import { fetchOrUpdateToken } from '../../components/FormSignin/actions'
 
 export function fetchOrUpdateProfile(token) {
     const axiosInstance = setAxiosInstance(token)

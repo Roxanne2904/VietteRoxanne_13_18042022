@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { actionsEditForm } from './toggleEditFormReducer'
 import { toggleEditFormAndResetEditValues } from './actions'
 //*actionsEditValues
-import { resetToInitialState } from '../FormEditName/editValuesReducer'
+import { resetToInitialState } from '../FormEditName/InputValuesToUpdateReducer'
 //*selectors
 import { selectToggleEditForm } from '../../utils/selectors'
 //*styled

@@ -1,26 +1,11 @@
-// import { useSelector } from 'react-redux'
-// import { selectProfile } from '../../utils/selectors'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import styled from 'styled-components'
-// //*selectors
-// import { selectToken } from '../../utils/selectors'
+
 //*actions
 import { actionsToken } from '../../components/FormLogin/tokenReducer'
-
-const ErrorContent = styled.section`
-    margin: 10px 30px 50px;
-`
-const ErrorLink = styled(Link)`
-    background: #00bc77;
-    padding: 10px;
-    color: white;
-    text-decoration: none;
-    margin: 20px 0;
-    display: block;
-    width: fit-content;
-`
+//*Styled
+import { ErrorContent, ErrorLink } from './styled.jsx'
 
 export default function Error() {
     const dispatch = useDispatch()
@@ -57,7 +42,6 @@ export default function Error() {
                     </li>
                     <li>your internet connexion is stable</li>
                     <li>you are connected to the internet</li>
-                    {/* <li>then, check if you've been correctly log in</li> */}
                 </ul>
             </span>
             <ErrorLink to="/login">Sign In</ErrorLink>

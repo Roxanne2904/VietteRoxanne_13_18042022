@@ -5,8 +5,8 @@ const initialState = {
     password: null,
 }
 
-const loginValueSlide = createSlice({
-    name: 'loginValues',
+const loginInputValuesSlide = createSlice({
+    name: 'loginInputValues',
     initialState,
     reducers: {
         getEmail: {
@@ -26,6 +26,6 @@ const loginValueSlide = createSlice({
     },
 })
 
-const { actions, reducer } = loginValueSlide
+const { actions, reducer } = loginInputValuesSlide
 export const { getEmail, getPassword } = actions
 export default reducer

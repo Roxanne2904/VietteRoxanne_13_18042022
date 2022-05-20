@@ -1,9 +1,9 @@
-export function test(data, editValue, editData) {
+export function CheckAndUpdateTheName(data, editValue, updateData) {
     if (editValue !== null && editValue !== '') {
         return editValue
     } else {
-        if (editData !== undefined) {
-            return editData
+        if (updateData !== undefined) {
+            return updateData
         }
         return data
     }

@@ -2,13 +2,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 //*selectors
-import { selectToken } from '../../utils/selectors'
-// import { selectInputValue } from '../../utils/selectors'
 import {
+    selectToken,
     selectProfile,
     selectProfileUpdate,
     selectToggleEditForm,
-    selectEditValues,
+    selectInputValuesToUpdate,
 } from '../../utils/selectors'
 //*Components
 import Button from '../../components/Button/index'
@@ -17,8 +16,8 @@ import FormEditName from '../../components/FormEditName'
 import Error from '../Error'
 //*actions
 import { fetchOrUpdateProfile } from './actions'
-//service
-import { test } from '../../components/FormEditName/service'
+//*service
+import { CheckAndUpdateTheName } from '../../components/FormEditName/service'
 //*Styled
 import {
     Main,
@@ -40,16 +39,17 @@ export default function Profile() {
     const profile = useSelector(selectProfile)
     const { firstName, lastName } = profile.data !== null && profile.data
 
-    const editProfile = useSelector(selectProfileUpdate)
-    const editDataProfile = editProfile.data !== null && editProfile.data
+    const profileUpdated = useSelector(selectProfileUpdate)
+    const profileUpdatedDatas =
+        profileUpdated.data !== null && profileUpdated.data
 
-    const editValues = useSelector(selectEditValues)
-    const { editFirstName, editLastName } = editValues
+    const inputValuesToUpdate = useSelector(selectInputValuesToUpdate)
+    const { firstNameEdited, lastNameEdited } = inputValuesToUpdate
 
     const toggleEditForm = useSelector(selectToggleEditForm)
 
     // console.log(editProfile)
-    console.log(token.data)
+    // console.log(token.data)
 
     useEffect(() => {
         if (!token.data) {
@@ -58,7 +58,7 @@ export default function Profile() {
         dispatch(fetchOrUpdateProfile(currentToken))
     }, [dispatch, navigate, token.data, currentToken])
 
-    console.log(editProfile)
+    // console.log(profileUpdated)
 
     return !token.data ? (
         '...'
@@ -71,21 +71,21 @@ export default function Profile() {
                         <br />
                         {toggleEditForm === 'open'
                             ? ''
-                            : test(
+                            : CheckAndUpdateTheName(
                                   firstName,
-                                  editFirstName,
-                                  editDataProfile.firstName
+                                  firstNameEdited,
+                                  profileUpdatedDatas.firstName
                               )}
                         {toggleEditForm === 'open'
                             ? ''
                             : ' ' +
-                              test(
+                              CheckAndUpdateTheName(
                                   lastName,
-                                  editLastName,
-                                  editDataProfile.lastName
+                                  lastNameEdited,
+                                  profileUpdatedDatas.lastName
                               )}
-                        {editProfile.status === 'pending' ||
-                        editProfile.status === 'updating' ? (
+                        {profileUpdated.status === 'pending' ||
+                        profileUpdated.status === 'updating' ? (
                             <StyledUpdatingTxt>
                                 name update in progress <br />
                                 ...

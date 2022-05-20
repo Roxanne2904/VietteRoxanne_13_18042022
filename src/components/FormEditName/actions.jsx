@@ -1,6 +1,8 @@
 //*actions
 import { actionsProfileUpdate } from './profileUpdateReducer'
 import { actionsProfile } from '../../pages/Profile/profileReducer'
+import { CheckAndUpdateTheName } from './service'
+import { toggleEditFormAndResetEditValues } from '../Button/actions'
 //*selectors
 import { selectProfileUpdate } from '../../utils/selectors'
 //*axios
@@ -46,5 +48,63 @@ export function fetchOrUpdateProfileUpdate(token, firstName, lastName) {
                 )
             }
         }
+    }
+}
+
+/**
+ * It just launc, with a dispatch, the fetchOrUpdateProfileUpdate function.
+ * @param { String } token
+ * @param { String } firstName
+ * @param { String } firstNameValue
+ * @param { String } firstNameUpdated
+ * @param { String } lastName
+ * @param { String } lastNameValue
+ * @param { String } lastNameUpdated
+ * @returns { asyn function } It return an async function using redux thunk to dispatch
+ * fetchOrUpdateProfileUpdate function.
+ */
+export function handleFetchOrUpdateProfileUpdate(
+    token,
+    firstName,
+    firstNameValue,
+    firstNameUpdated,
+    lastName,
+    lastNameValue,
+    lastNameUpdated
+) {
+    return async (dispatch) => {
+        dispatch(
+            fetchOrUpdateProfileUpdate(
+                token,
+                CheckAndUpdateTheName(
+                    firstName,
+                    firstNameValue,
+                    firstNameUpdated
+                ),
+                CheckAndUpdateTheName(lastName, lastNameValue, lastNameUpdated)
+            )
+        )
+    }
+}
+
+/**
+ *
+ * @param { Object } toggleEditFormAction An actions from toggleEditForm Reducer to toggle the current state.
+ * @param { Object } resetToInitialState An action to reset the current state from InputValuesToUpdate Reducer.
+ * @returns { async function } It return an async function using redux thunk to dispatch
+ * toggleEditFormAndResetEditValues function.
+ */
+
+export function handleToggleEditFormAndResetEditValues(
+    toggleEditFormAction,
+    resetToInitialState
+) {
+    return async (dispatch) => {
+        dispatch(
+            toggleEditFormAndResetEditValues(
+                toggleEditFormAction,
+                resetToInitialState
+            )
+        )
     }
 }

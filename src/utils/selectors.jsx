@@ -13,13 +13,13 @@ export const selectProfileUpdate = (state) => {
     return profileUpdateState
 }
 
-export const selectLoginValues = (state) => {
-    let loginValueState = state.persistedReducer.loginValues
-    return loginValueState
+export const selectloginInputValues = (state) => {
+    let loginInputValuesState = state.persistedReducer.loginInputValues
+    return loginInputValuesState
 }
-export const selectEditValues = (state) => {
-    let editValueState = state.persistedReducer.editValues
-    return editValueState
+export const selectInputValuesToUpdate = (state) => {
+    let InputValuesToUpdateState = state.persistedReducer.InputValuesToUpdate
+    return InputValuesToUpdateState
 }
 
 export const selectToggleEditForm = (state) => {

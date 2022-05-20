@@ -8,6 +8,10 @@
 
 # Project #10 - Argent Bank Application
 
+## I started this project on 18/04/2022
+
+_Training begins on 23/12/2020_
+
 ## Technologies
 
 A list of Technologies using within the project:

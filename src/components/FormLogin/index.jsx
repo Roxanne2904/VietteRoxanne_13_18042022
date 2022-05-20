@@ -1,45 +1,40 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import styled from 'styled-components'
+
 //*components
 import Button from '../Button/index'
 //*actions
 import { fetchOrUpdateToken } from './actions'
-import { getEmail, getPassword } from './loginValuesReducer.jsx'
+import { getEmail, getPassword } from './loginInputValuesReducer.jsx'
 // import { actions } from './tokenReducer'
 
 //*select
 import { selectToken } from '../../utils/selectors.jsx'
-import { selectLoginValues } from '../../utils/selectors.jsx'
+import { selectloginInputValues } from '../../utils/selectors.jsx'
 import Input from '../Input/index.jsx'
 
 //*Styled
-// import { SignInButton } from './styled.jsx'
-
-const StyledErrorMessage = styled.p`
-    color: red;
-    text-align: center;
-    font-weight: bold;
-`
+import { StyledErrorMessage } from './styled.jsx'
 
 export default function FormLogin() {
-    // const store = useStore()
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const token = useSelector(selectToken)
-    const loginValues = useSelector(selectLoginValues)
-
-    const { email, password } = loginValues
     const { status, data, error } = token
 
-    // console.log(signinValue)
-    // console.log(error)
+    const loginInputValues = useSelector(selectloginInputValues)
+    const { email, password } = loginInputValues
 
     const handleLogin = (e) => {
         e.preventDefault()
-        dispatch(fetchOrUpdateToken(loginValues.email, loginValues.password))
+        dispatch(
+            fetchOrUpdateToken(
+                loginInputValues.email,
+                loginInputValues.password
+            )
+        )
     }
 
     useEffect(() => {
@@ -72,8 +67,6 @@ export default function FormLogin() {
                 id="remember-me"
                 autoComplete="off"
             />
-
-            {/* <SignInButton>Sign In</SignInButton> */}
             <Button title={'Sign In'} name="LOGIN" />
             <StyledErrorMessage>
                 {status === 'rejected'

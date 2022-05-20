@@ -9,7 +9,6 @@ import {
     MAIN_NAV_ITEM,
 } from '../../utils/css/styledNav'
 import { SRC_ONLY } from '../../utils/css/styledGobal'
-//**/
 
 const size = '450px'
 

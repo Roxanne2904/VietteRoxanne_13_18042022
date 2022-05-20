@@ -1,40 +1,30 @@
 import Input from '../Input'
-import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
 //*components
 import Button from '../Button'
 //*selectors
 import {
     selectToggleEditForm,
-    selectEditValues,
+    selectInputValuesToUpdate,
     selectProfile,
     selectToken,
     selectProfileUpdate,
 } from '../../utils/selectors'
 //*actions
-import { getEditFirstName, getEditLastName } from './editValuesReducer'
-import { fetchOrUpdateProfileUpdate } from './actions'
-import { toggleEditFormAndResetEditValues } from '../Button/actions'
-import { resetToInitialState } from './editValuesReducer'
+import {
+    getFirstNameEdited,
+    getLastNameEdited,
+} from './InputValuesToUpdateReducer'
+// import { fetchOrUpdateProfileUpdate } from './actions'
+// import { toggleEditFormAndResetEditValues } from '../Button/actions'
+import { resetToInitialState } from './InputValuesToUpdateReducer'
 import { actionsEditForm } from '../Button/toggleEditFormReducer'
+import { handleFetchOrUpdateProfileUpdate } from './actions'
+import { handleToggleEditFormAndResetEditValues } from './actions'
 //*service
-import { test } from './service'
-
-const StyledForm = styled.form`
-    display: ${({ state }) => (state === 'open' ? 'block' : 'none')};
-    color: black;
-    padding: 0 20px;
-`
-
-const StyledButtonContent = styled.div`
-    display: flex;
-    justify-content: center;
-`
-const StyledInputContent = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-`
+import { CheckAndUpdateTheName } from './service'
+//*styled
+import { StyledForm, StyledButtonContent, StyledInputContent } from './styled'
 
 export default function FormEditName() {
     const dispatch = useDispatch()
@@ -44,16 +34,16 @@ export default function FormEditName() {
 
     const profile = useSelector(selectProfile)
     const { data } = profile
-    console.log(data)
     const { firstName, lastName } = data !== null && data
 
-    const editProfile = useSelector(selectProfileUpdate)
-    const editDataProfile = editProfile.data !== null && editProfile.data
+    const profileUpdated = useSelector(selectProfileUpdate)
+    const profileUpdatedDatas =
+        profileUpdated.data !== null && profileUpdated.data
 
-    const editValues = useSelector(selectEditValues)
-    const { editFirstName, editLastName } = editValues
+    const inputValuesToUpdate = useSelector(selectInputValuesToUpdate)
+    const { firstNameEdited, lastNameEdited } = inputValuesToUpdate
 
-    const editFormState = useSelector(selectToggleEditForm)
+    const string_strToggleEditForm = useSelector(selectToggleEditForm)
 
     // function test(data, editValue, editData) {
     //     if (editValue !== null && editValue !== '') {
@@ -77,37 +67,66 @@ export default function FormEditName() {
 
     // console.log(editDataProfile)
 
-    const handleEditName = (e) => {
+    const handleNamesUpdate = (e) => {
         e.preventDefault()
         dispatch(
-            fetchOrUpdateProfileUpdate(
+            handleFetchOrUpdateProfileUpdate(
                 currentToken,
-                test(firstName, editFirstName, editDataProfile.firstName),
-                test(lastName, editLastName, editDataProfile.lastName)
+                firstName,
+                firstNameEdited,
+                profileUpdatedDatas.firstName,
+                lastName,
+                lastNameEdited,
+                profileUpdatedDatas.lastName
             )
         )
         dispatch(
-            toggleEditFormAndResetEditValues(
+            handleToggleEditFormAndResetEditValues(
                 actionsEditForm.toggleEditForm(),
                 resetToInitialState()
             )
         )
+        // dispatch(
+        //     fetchOrUpdateProfileUpdate(
+        //         currentToken,
+        //         CheckAndUpdateTheName(
+        //             firstName,
+        //             editFirstName,
+        //             profileUpdateDatas.firstName
+        //         ),
+        //         CheckAndUpdateTheName(
+        //             lastName,
+        //             editLastName,
+        //             profileUpdateDatas.lastName
+        //         )
+        //     )
+        // )
+        // dispatch(
+        //     toggleEditFormAndResetEditValues(
+        //         actionsEditForm.toggleEditForm(),
+        //         resetToInitialState()
+        //     )
+        // )
     }
 
     return (
-        <StyledForm onSubmit={handleEditName} noValidate state={editFormState}>
+        <StyledForm
+            onSubmit={handleNamesUpdate}
+            noValidate
+            state={string_strToggleEditForm}
+        >
             <StyledInputContent>
                 <Input
                     label="First Name"
                     type="text"
                     id="firstName"
                     autoComplete="on"
-                    event={(e) => dispatch(getEditFirstName(e.target.value))}
-                    value={editFirstName !== null ? editFirstName : ''}
-                    placeholder={test(
+                    event={(e) => dispatch(getFirstNameEdited(e.target.value))}
+                    value={firstNameEdited !== null ? firstNameEdited : ''}
+                    placeholder={CheckAndUpdateTheName(
                         firstName,
-                        editFirstName,
-                        editDataProfile.firstName
+                        firstNameEdited,
+                        profileUpdatedDatas.firstName
                     )}
                 />
 
@@ -116,12 +135,12 @@ export default function FormEditName() {
                     type="text"
                     id="name"
                     autoComplete="on"
-                    event={(e) => dispatch(getEditLastName(e.target.value))}
-                    value={editLastName !== null ? editLastName : ''}
-                    placeholder={test(
+                    event={(e) => dispatch(getLastNameEdited(e.target.value))}
+                    value={lastNameEdited !== null ? lastNameEdited : ''}
+                    placeholder={CheckAndUpdateTheName(
                         lastName,
-                        editLastName,
-                        editDataProfile.lastName
+                        lastNameEdited,
+                        profileUpdatedDatas.lastName
                     )}
                 />
             </StyledInputContent>
