@@ -15,14 +15,13 @@ import {
     getFirstNameEdited,
     getLastNameEdited,
 } from './InputValuesToUpdateReducer'
-// import { fetchOrUpdateProfileUpdate } from './actions'
-// import { toggleEditFormAndResetEditValues } from '../Button/actions'
+
 import { resetToInitialState } from './InputValuesToUpdateReducer'
 import { actionsEditForm } from '../Button/toggleEditFormReducer'
 import { handleFetchOrUpdateProfileUpdate } from './actions'
 import { handleToggleEditFormAndResetEditValues } from './actions'
 //*service
-import { CheckAndUpdateTheName } from './service'
+import { CheckAndUpdateTheName } from './utilsFunctions'
 //*styled
 import { StyledForm, StyledButtonContent, StyledInputContent } from './styled'
 

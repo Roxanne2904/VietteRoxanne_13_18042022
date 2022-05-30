@@ -17,7 +17,7 @@ import Error from '../Error'
 //*actions
 import { fetchOrUpdateProfile } from './actions'
 //*service
-import { CheckAndUpdateTheName } from '../../components/FormEditName/service'
+import { CheckAndUpdateTheName } from '../../components/FormEditName/utilsFunctions'
 //*Styled
 import {
     Main,
@@ -48,17 +48,12 @@ export default function Profile() {
 
     const toggleEditForm = useSelector(selectToggleEditForm)
 
-    // console.log(editProfile)
-    // console.log(token.data)
-
     useEffect(() => {
         if (!token.data) {
             navigate('/login')
         }
         dispatch(fetchOrUpdateProfile(currentToken))
     }, [dispatch, navigate, token.data, currentToken])
-
-    // console.log(profileUpdated)
 
     return !token.data ? (
         '...'

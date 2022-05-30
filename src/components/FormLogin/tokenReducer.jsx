@@ -1,6 +1,3 @@
-// import produce from 'immer'
-// import { selectToken } from '../../utils/selectors'
-// import axios from 'axios'
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {

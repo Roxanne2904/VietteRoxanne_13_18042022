@@ -2,8 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 //*Components
 import FormLogin from '../../components/FormLogin/index.jsx'
-//*selector
-// import { selectToken } from '../../utils/selectors.jsx'
 //*Styled
 import { Main, LoginContent } from './styled.jsx'
 

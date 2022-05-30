@@ -7,7 +7,6 @@ import Button from '../Button/index'
 //*actions
 import { fetchOrUpdateToken } from './actions'
 import { getEmail, getPassword } from './loginInputValuesReducer.jsx'
-// import { actions } from './tokenReducer'
 
 //*select
 import { selectToken } from '../../utils/selectors.jsx'
@@ -51,7 +50,7 @@ export default function FormLogin() {
                 id="username"
                 autoComplete="on"
                 event={(e) => dispatch(getEmail(e.target.value))}
-                value={email && !email ? '' : email}
+                value={email !== null && !email ? '' : email}
             />
             <Input
                 label="Password"
@@ -59,7 +58,7 @@ export default function FormLogin() {
                 id="password"
                 autoComplete="on"
                 event={(e) => dispatch(getPassword(e.target.value))}
-                value={!password ? '' : password}
+                value={password !== null && !password ? '' : password}
             />
             <Input
                 label="Remember me"

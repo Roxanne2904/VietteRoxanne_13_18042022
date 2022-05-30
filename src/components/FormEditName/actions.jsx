@@ -1,7 +1,7 @@
 //*actions
 import { actionsProfileUpdate } from './profileUpdateReducer'
 import { actionsProfile } from '../../pages/Profile/profileReducer'
-import { CheckAndUpdateTheName } from './service'
+import { CheckAndUpdateTheName } from './utilsFunctions'
 import { toggleEditFormAndResetEditValues } from '../Button/actions'
 //*selectors
 import { selectProfileUpdate } from '../../utils/selectors'
@@ -52,7 +52,7 @@ export function fetchOrUpdateProfileUpdate(token, firstName, lastName) {
 }
 
 /**
- * It just launc, with a dispatch, the fetchOrUpdateProfileUpdate function.
+ * It simply launches, with a dispatch, the fetchOrUpdateProfileUpdate function.
  * @param { String } token
  * @param { String } firstName
  * @param { String } firstNameValue
@@ -88,7 +88,8 @@ export function handleFetchOrUpdateProfileUpdate(
 }
 
 /**
- *
+ * It simply launch, with a dispatch, toggleEditFormAndResetEditValues function
+ * to toggle the display of the edit form and reset his values.
  * @param { Object } toggleEditFormAction An actions from toggleEditForm Reducer to toggle the current state.
  * @param { Object } resetToInitialState An action to reset the current state from InputValuesToUpdate Reducer.
  * @returns { async function } It return an async function using redux thunk to dispatch

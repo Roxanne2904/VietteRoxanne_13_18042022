@@ -1,7 +1,5 @@
-// import { selectToken } from '../../utils/selectors'
 import { actionsToken } from './tokenReducer'
 import axios from 'axios'
-// import { useNavigate} from 'react-router-dom'
 
 export function fetchOrUpdateToken(email, password) {
     return async (dispatch, getState) => {
@@ -30,7 +28,6 @@ export function fetchOrUpdateToken(email, password) {
                 window.location.pathname = '/error'
             } else {
                 const currentError = error.response.data
-                // console.log(currentError.message)
                 dispatch(actionsToken.tokenRejected(currentError))
             }
         }
