@@ -17,6 +17,9 @@ export const MainNav = styled.nav`
     div {
         margin: 0 0 3px 0;
     }
+    @media (max-width: ${size}) {
+        padding: 0;
+    }
 `
 export const MainNavLogo = styled(Link)`
     ${MAIN_NAV_LOGO}

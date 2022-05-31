@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { LOGIN_BUTTON } from '../../utils/css/styledLogin'
 
 const size = '720px'
+const xSize = '450px'
 const xsSize = '390px'
 const mainColor = '#00bc77'
 
@@ -50,4 +51,7 @@ export const TransactionButton = styled.button`
     @media (min-width: ${size}) {
         width: 200px;
     }
+    @media (max-width: ${xSize}) {
+        font-size: 0.9rem;
+    } ;
 `
