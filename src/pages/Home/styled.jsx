@@ -11,13 +11,20 @@ import { FEATURES } from '../../utils/css/styledFeatures.jsx'
 import { SRC_ONLY } from '../../utils/css/styledGobal.jsx'
 //***/
 
+const size = '300px'
+
 export const Hero = styled.div`
     ${HERO}
 `
 
 export const HeroContent = styled.section`
     ${HERO_CONTENT}
+    @media (max-width: ${size}) {
+        width: -moz-available;
+        width: -webkit-fill-available;
+    }
 `
+
 export const SrOnly = styled.h2`
     ${SRC_ONLY}
 `

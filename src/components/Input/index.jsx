@@ -11,16 +11,14 @@ export default function Input({
 }) {
     if (!event) {
         return (
-            <InputWrapper>
-                <label>
-                    {label}
-                    <input
-                        type={type}
-                        id={id}
-                        autoComplete={autoComplete}
-                        defaultChecked
-                    />
-                </label>
+            <InputWrapper $checkbox>
+                <label htmlFor={id}>{label}</label>
+                <input
+                    type={type}
+                    id={id}
+                    autoComplete={autoComplete}
+                    defaultChecked
+                />
             </InputWrapper>
         )
     } else {
@@ -43,16 +41,14 @@ export default function Input({
         } else {
             return (
                 <InputWrapper>
-                    <label>
-                        {label}
-                        <input
-                            type={type}
-                            id={id}
-                            autoComplete={autoComplete}
-                            onChange={event}
-                            value={value}
-                        />
-                    </label>
+                    <label htmlFor={id}>{label}</label>
+                    <input
+                        type={type}
+                        id={id}
+                        autoComplete={autoComplete}
+                        onChange={event}
+                        value={value}
+                    />
                 </InputWrapper>
             )
         }
