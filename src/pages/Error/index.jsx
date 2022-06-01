@@ -12,7 +12,7 @@ export default function Error() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        console.log(window.location.pathname)
+        // console.log(window.location.pathname)
         if (
             window.location.pathname === '/profile' ||
             window.location.pathname === '/'
