@@ -28,7 +28,7 @@ export const MainNavLogo = styled(Link)`
 export const MainNavLogoImage = styled.img`
     ${MAIN_NAV_LOGO_IMG}
     @media (max-width: ${size}) {
-        width: 170px;
+        width: 150px;
     }
 `
 

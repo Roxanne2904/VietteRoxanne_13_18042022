@@ -4,7 +4,7 @@ const toggleEditFormSlide = createSlice({
     name: 'editForm',
     initialState: 'open',
     reducers: {
-        resetEditForm: {
+        resetToggleEditForm: {
             reducer: (state) => {
                 return (state = 'close')
             },
@@ -18,5 +18,5 @@ const toggleEditFormSlide = createSlice({
 })
 
 const { actions, reducer } = toggleEditFormSlide
-export const actionsEditForm = actions
+export const actionsToggleEditForm = actions
 export default reducer

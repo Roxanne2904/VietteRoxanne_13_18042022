@@ -2,11 +2,7 @@ import { actionsToken } from './tokenReducer'
 import axios from 'axios'
 
 export function fetchOrUpdateToken(email, password) {
-    return async (dispatch, getState) => {
-        // const status = selectToken(getState()).status
-        // if (status === 'pending' || status === 'updating') {
-        //     return
-        // }
+    return async (dispatch) => {
         dispatch(actionsToken.tokenFetching())
 
         try {

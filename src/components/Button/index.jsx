@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 //*actions
-import { actionsEditForm } from './toggleEditFormReducer'
+import { actionsToggleEditForm } from './toggleEditFormReducer'
 import { toggleEditFormAndResetEditValues } from './actions'
 //*actionsEditValues
 import { resetToInitialState } from '../FormEditName/InputValuesToUpdateReducer'
@@ -29,7 +29,7 @@ export default function Button({ title, name }) {
                     onClick={() =>
                         dispatch(
                             toggleEditFormAndResetEditValues(
-                                actionsEditForm.toggleEditForm(),
+                                actionsToggleEditForm.toggleEditForm(),
                                 resetToInitialState()
                             )
                         )
@@ -50,7 +50,7 @@ export default function Button({ title, name }) {
                     onClick={() =>
                         dispatch(
                             toggleEditFormAndResetEditValues(
-                                actionsEditForm.toggleEditForm(),
+                                actionsToggleEditForm.toggleEditForm(),
                                 resetToInitialState()
                             )
                         )

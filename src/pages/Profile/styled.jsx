@@ -3,7 +3,7 @@ import { MAIN, BG_DARK } from '../../utils/css/styledGobal'
 import { SRC_ONLY } from '../../utils/css/styledGobal'
 
 const size = '720px'
-
+const xSize = '390px'
 export const Main = styled.main`
     ${MAIN}
     ${BG_DARK}
@@ -48,6 +48,9 @@ export const AccountContentWrapperCta = styled.div`
 
 export const MainTitle = styled.h1`
     ${(props) => props.state === 'open' && `margin: 0.67em 0 0 0;`}
+    @media (max-width: ${xSize}) {
+        font-size: 1.5rem;
+    }
 `
 export const StyledUpdatingTxt = styled.em`
     display: block;

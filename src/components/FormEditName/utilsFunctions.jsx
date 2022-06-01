@@ -7,12 +7,15 @@
  */
 
 export function CheckAndUpdateTheName(data, InputValuesToUpdate, dataUpdated) {
+    //*La donnée prioritaire est celle de l'input */
     if (InputValuesToUpdate !== null && InputValuesToUpdate !== '') {
         return InputValuesToUpdate
     } else {
+        //*La donnée secondaire est celle qui a été récement mis à jour et qui a été stocké dans le store avec le reducer ProfileUpdated */
         if (dataUpdated !== undefined) {
             return dataUpdated
         }
+        //* et enfin en dernière solution on récupère la donnée récupérer lors de la connexion */
         return data
     }
 }

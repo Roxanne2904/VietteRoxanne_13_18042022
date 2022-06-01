@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { actionsToken } from '../FormLogin/tokenReducer'
 import { actionsProfile } from '../../pages/Profile/profileReducer'
 import { actionsProfileUpdate } from '../FormEditName/profileUpdateReducer'
-import { actionsEditForm } from '../Button/toggleEditFormReducer'
+import { actionsToggleEditForm } from '../Button/toggleEditFormReducer'
 import { actionsScreenWidth } from './screenWidthReducer'
 //*selectors
 import {
@@ -60,7 +60,7 @@ export default function Header() {
         dispatch(actionsToken.tokenDisconnected())
         dispatch(actionsProfile.profileDisconnected())
         dispatch(actionsProfileUpdate.profileUpdateDisconnected())
-        dispatch(actionsEditForm.resetEditForm())
+        dispatch(actionsToggleEditForm.resetToggleEditForm())
         navigate('/')
     }
 

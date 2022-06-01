@@ -17,7 +17,7 @@ import {
 } from './InputValuesToUpdateReducer'
 
 import { resetToInitialState } from './InputValuesToUpdateReducer'
-import { actionsEditForm } from '../Button/toggleEditFormReducer'
+import { actionsToggleEditForm } from '../Button/toggleEditFormReducer'
 import { handleFetchOrUpdateProfileUpdate } from './actions'
 import { handleToggleEditFormAndResetEditValues } from './actions'
 //*service
@@ -44,28 +44,6 @@ export default function FormEditName() {
 
     const string_strToggleEditForm = useSelector(selectToggleEditForm)
 
-    // function test(data, editValue, editData) {
-    //     if (editValue !== null && editValue !== '') {
-    //         return editValue
-    //     } else {
-    //         if (editData !== undefined) {
-    //             return editData
-    //         }
-    //         return data
-    //     }
-    // }
-
-    // console.log('le prénom lors du login' + '     ' + firstName)
-    // console.log('la value input' + '     ' + editFirstName)
-    // console.log(
-    //     'le nouveau prénom stocké' + '     ' + editDataProfile.firstName
-    // )
-
-    // test(firstName, editFirstName, editDataProfile.firstName)
-    // test(lastName, editLastName, editDataProfile.lastName)
-
-    // console.log(editDataProfile)
-
     const handleNamesUpdate = (e) => {
         e.preventDefault()
         dispatch(
@@ -81,31 +59,10 @@ export default function FormEditName() {
         )
         dispatch(
             handleToggleEditFormAndResetEditValues(
-                actionsEditForm.toggleEditForm(),
+                actionsToggleEditForm.toggleEditForm(),
                 resetToInitialState()
             )
         )
-        // dispatch(
-        //     fetchOrUpdateProfileUpdate(
-        //         currentToken,
-        //         CheckAndUpdateTheName(
-        //             firstName,
-        //             editFirstName,
-        //             profileUpdateDatas.firstName
-        //         ),
-        //         CheckAndUpdateTheName(
-        //             lastName,
-        //             editLastName,
-        //             profileUpdateDatas.lastName
-        //         )
-        //     )
-        // )
-        // dispatch(
-        //     toggleEditFormAndResetEditValues(
-        //         actionsEditForm.toggleEditForm(),
-        //         resetToInitialState()
-        //     )
-        // )
     }
 
     return (
